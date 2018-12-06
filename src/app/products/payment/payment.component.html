@@ -1,0 +1,52 @@
+<section class="section">
+  <div class="container">
+    <form [formGroup]="paymentForm">
+      <h1 class="title">Versandadresse</h1>
+      <div class="card">
+        <div class="card-content">
+          <div class="select">
+            <select formControlName="selectedAddress">
+              <option [ngValue]="address" *ngFor="let address of addressService.userAddresses | async">
+                {{address.street}}
+                {{address.streetNumber}},
+                {{address.city}} {{address.postCode}},
+                {{address.country}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <h1 class="title">Zahlungsart</h1>
+      <div class="card">
+        <div class="card-content">
+          <div class="select">
+            <select formControlName="paymentOption">
+              <option *ngFor="let payment of paymentOptions">
+                {{payment}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+    <br><br>
+    <h1 class="title">
+      Artikel überprüfen
+    </h1>
+    <div class="card">
+      <div class="card-content">
+        <app-shopping-cart></app-shopping-cart>
+      </div>
+    </div>
+    <br><br>
+    <div class="card">
+      <div class="card-content">
+        <div class="control">
+          <button class="button is-dark" [disabled]="this.paymentForm.invalid || this.shoppingCartService.isEmpty()"
+            (click)="order()">Jetzt kaufen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

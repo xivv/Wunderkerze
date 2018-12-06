@@ -1,0 +1,36 @@
+<section class="section">
+  <div class="container">
+    <table class="table">
+      <tr>
+        <th>id</th>
+        <th>Produktname</th>
+        <th>Produkt</th>
+        <th>Menge</th>
+        <th>Preis</th>
+        <th>Aktionen</th>
+      </tr>
+      <tr *ngFor="let item of shoppingCartService.cartItems">
+        <td>{{item.product.id}}</td>
+        <td><a routerLink="/product/{{item.product.id}}">{{item.product.name}}</a></td>
+        <td>
+          <figure class="image is-128x128">
+            <img src="{{item.product.image}}">
+          </figure>
+        </td>
+        <td>{{item.amount}}</td>
+        <td>EUR {{getPrice(item)}}</td>
+        <td><a class="button is-danger" (click)="decreaseProductAmount(item)">-</a><a class="button is-success" (click)="increaseProductAmount(item)">+</a></td>
+      </tr>
+      <tfoot>
+        <tr>
+          <td>Gesamtbetrag: EUR {{getTotal()}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
+      <a routerLink="/payment" class="button is-dark">
+        Zur Kasse
+      </a>
+    </p>
+  </div>
+</section>

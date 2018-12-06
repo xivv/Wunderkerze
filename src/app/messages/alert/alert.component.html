@@ -1,0 +1,9 @@
+<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+  <div *ngIf="message.type === 'success'" class="tile notification is-info">
+    <p class="subtitle">{{message.text}}</p>
+  </div>
+  <div *ngIf="message.type === 'error'" class="tile notification is-warning">
+    <p class="subtitle">{{message.text}}</p>
+  </div>
+  <br>
+</div>

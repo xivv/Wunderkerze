@@ -1,0 +1,56 @@
+<section>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" formControlName="name" type="text" placeholder="name" autofocus="">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" formControlName="email" type="email" placeholder="email" autofocus="">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" formControlName="password" type="password" placeholder="password">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" formControlName="repeatPassword" type="password" placeholder="password wdh.">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <re-captcha formControlName="recaptcha" siteKey="6Lel730UAAAAAHFoG1zZrpuGzdzptZpX1KGEVr0k"></re-captcha>
+            </div>
+            <br>
+            <div class="form-group">
+              <button [disabled]='registerForm.invalid' class="button is-block is-dark is-large is-fullwidth">Registrieren</button>
+              <br>
+              <a routerLink="/login" class="button is-info">
+                Login
+              </a>
+              <br>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

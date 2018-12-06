@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container">
+    <p>{{productService.product.name}}</p>
+    <p>{{productService.product.description}}</p>
+    <p>Vorrat: {{productService.product.amount}} stk.</p>
+    <p>Preis: EUR {{getPrice()}}</p>
+    <p>Größe: {{productService.product.amount}}</p>
+
+
+    <div class="tags are-medium">
+      <span class="tag is-black is-medium" *ngFor="let label of productService.product.label">{{label}}</span>
+    </div>
+
+    <figure class="image is-128x128">
+      <img src="{{productService.product.image}}">
+    </figure>
+    <p class="control">
+      <a (click)="addToCart()" class="button is-dark">
+        In den Warenkorb
+      </a>
+    </p>
+  </div>
+</section>

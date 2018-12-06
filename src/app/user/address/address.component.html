@@ -1,0 +1,157 @@
+<section class="section">
+
+  <div [hidden]="isEditMode()">
+    <div class="container">
+      <form [formGroup]="addressForm">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Vorname</label>
+          </div>
+          <div class="field-body">
+            <input type="text" formControlName="firstname" class="input" [(ngModel)]="address.firstname" placeholder="Max">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Name</label>
+          </div>
+          <div class="field-body">
+            <input type="text" class="input" formControlName="name" [(ngModel)]="address.name" placeholder="Müller">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Straße</label>
+          </div>
+          <div class="field-body">
+            <input type="text" class="input" formControlName="street" [(ngModel)]="address.street" placeholder="Weserstraße">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Hausnummer</label>
+          </div>
+          <div class="field-body">
+            <input type="text" class="input" formControlName="streetNumber" [(ngModel)]="address.streetNumber"
+              placeholder="10a - 15c">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Stadt</label>
+          </div>
+          <div class="field-body">
+            <input type="text" class="input" formControlName="city" [(ngModel)]="address.city" placeholder="Berlin">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Postleitzahl</label>
+          </div>
+          <div class="field-body">
+            <input type="number" class="input" formControlName="postCode" [(ngModel)]="address.postCode" placeholder="33031">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Land</label>
+          </div>
+          <div class="field-body">
+            <div class="select">
+              <select formControlName="country" [(ngModel)]="address.country">
+                <option>Deutschland</option>
+                <option>Schweiz</option>
+                <option>Österreich</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="button is-dark" (click)="onSubmit()">Addresse anlegen</button>
+      </form>
+    </div>
+  </div>
+
+  <div [hidden]="!isEditMode()" *ngFor="let address of addressService.userAddresses | async; let index = index">
+
+    <div class="container">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Vorname</label>
+        </div>
+        <div class="field-body">
+          <input type="text" class="input" [(ngModel)]="address.firstname" placeholder="Franz">
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Name</label>
+        </div>
+        <div class="field-body">
+          <input type="text" class="input" [(ngModel)]="address.name" placeholder="Mueller">
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Straße</label>
+        </div>
+        <div class="field-body">
+          <input type="text" class="input" [(ngModel)]="address.street" placeholder="Weserstraße">
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Hausnummer</label>
+        </div>
+        <div class="field-body">
+          <input type="text" class="input" [(ngModel)]="address.streetNumber" placeholder="10a - 15c">
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Stadt</label>
+        </div>
+        <div class="field-body">
+          <input type="text" class="input" [(ngModel)]="address.city" placeholder="Berlin">
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Postleitzahl</label>
+        </div>
+        <div class="field-body">
+          <input type="number" class="input" [(ngModel)]="address.postCode" placeholder="33031">
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Land</label>
+        </div>
+        <div class="field-body">
+          <div class="select">
+            <select [(ngModel)]="address.country">
+              <option>Deutschland</option>
+              <option>Schweiz</option>
+              <option>Österreich</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="button is-dark" (click)="updateAddress(address)">Addresse speichern</button>
+      <br><br>
+      <button type="submit" class="button is-danger" (click)="deleteAddress(address)">Addresse löschen</button>
+      <br> <br> <br>
+    </div>
+  </div>
+</section>
