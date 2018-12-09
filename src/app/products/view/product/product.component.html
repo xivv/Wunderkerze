@@ -4,7 +4,7 @@
     <p>{{productService.product.description}}</p>
     <p>Vorrat: {{productService.product.amount}} stk.</p>
     <p>Preis: EUR {{getPrice()}}</p>
-    <p>Größe: {{productService.product.amount}}</p>
+    <p>Größe: {{productService.product.size}}</p>
 
 
     <div class="tags are-medium">
@@ -15,9 +15,10 @@
       <img src="{{productService.product.image}}">
     </figure>
     <p class="control">
-      <a (click)="addToCart()" class="button is-dark">
-        In den Warenkorb
-      </a>
+      <button (click)="addToCart()" [disabled]="productService.product.amount <= 0" class="button is-dark">
+        <p [hidden]="productService.product.amount <= 0">In den Warenkorb</p>
+        <p [hidden]="!productService.product.amount <= 0">Ausverkauft</p>
+      </button>
     </p>
   </div>
 </section>

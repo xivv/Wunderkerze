@@ -2,9 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { ProductConverter } from '../../statics/ProductConverter';
-import { ShoppingCartComponent } from '../../shopping-cart/shopping-cart.component';
 import { ShoppingCartService } from '../../shopping-cart/services/shopping-cart.service';
-import { AlertService } from 'src/app/messages/alert.service';
 
 @Component({
   selector: 'app-product',
@@ -33,5 +31,4 @@ export class ProductComponent implements OnInit {
     this.productService.product.id = id;
     this.shoppingCartService.addProductToCart(this.productService.product);
   }
-
 }

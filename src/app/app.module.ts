@@ -32,6 +32,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PaymentComponent } from './products/payment/payment.component';
 import { OrderAdministrationComponent } from './products/order/order-administration/order-administration.component';
 import { SearchComponent } from './products/search/search.component';
+import { PayedComponent } from './products/payment/payed/payed.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SearchComponent } from './products/search/search.component';
     RegisterComponent,
     PaymentComponent,
     OrderAdministrationComponent,
-    SearchComponent
+    SearchComponent,
+    PayedComponent
   ],
   imports: [
     BrowserModule,

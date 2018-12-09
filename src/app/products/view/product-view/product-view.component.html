@@ -9,9 +9,10 @@
           </figure>
           <a routerLink="/product/{{product.id}}">{{product.name}}</a>
           <p class="control">
-            <a (click)="addToCart(product)" class="button is-dark">
-              In den Warenkorb
-            </a>
+            <button [disabled]="product.amount <= 0" (click)="addToCart(product)" class="button is-dark">
+              <p [hidden]="product.amount <= 0">In den Warenkorb</p>
+              <p [hidden]="!product.amount <= 0">Ausverkauft</p>
+            </button>
           </p>
         </div>
       </div>

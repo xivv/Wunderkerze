@@ -19,7 +19,19 @@ export class ShoppingCartService {
     return this.cartItems.length <= 0;
   }
 
+  getNumberOfCartItems() {
+    let counter = 0;
+    this.cartItems.forEach(function (element) {
+      counter += element.amount;
+    });
+    return counter;
+  }
+
   addProductToCart(product: Product) {
+
+    if (product.amount <= 0) {
+      return;
+    }
 
     let newProduct = true;
 

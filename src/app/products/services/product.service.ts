@@ -27,11 +27,17 @@ export class ProductService {
     );
   }
 
+  reduceProductAmount(product: Product, amount: number) {
+    product.amount = product.amount - amount;
+    this.productsCollection.doc(product.id).update(product);
+  }
+
   getProduct(id: string) {
     return this.productsCollection.doc(id).ref.get().then((doc) => {
       this.product = doc.data();
     });
   }
+
   insertProduct(product: Product) {
     this.productsCollection.add(product);
     this.alertService.success('Product added to productlist: ' + product.name);

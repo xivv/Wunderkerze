@@ -3,11 +3,9 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { CartItem } from '../statics/CartItem';
 import { ProductConverter } from '../statics/ProductConverter';
 import { OrdersService } from '../order/services/orders.service';
-import { Order } from '../statics/Order';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { OrderStatus } from '../statics/OrderStatus';
 import { AddressService } from '../statics/services/address.service';
-import { PaymentOption } from '../statics/PaymentOption';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,7 +18,8 @@ export class ShoppingCartComponent implements OnInit {
     private addressService: AddressService,
     private shoppingCartService: ShoppingCartService,
     private ordersService: OrdersService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -39,6 +38,11 @@ export class ShoppingCartComponent implements OnInit {
 
   isNotEmpty() {
     return this.shoppingCartService.cartItems.length >= 1;
+  }
+
+  isInPayment() {
+    const url = this.router.url;
+    return url === '/payment';
   }
 
   getTotal() {

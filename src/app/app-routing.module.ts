@@ -15,6 +15,7 @@ import { RoleguardService } from './auth/services/roleguard.service';
 import { RegisterComponent } from './auth/register/register.component';
 import { PaymentComponent } from './products/payment/payment.component';
 import { OrderAdministrationComponent } from './products/order/order-administration/order-administration.component';
+import { PayedComponent } from './products/payment/payed/payed.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent },
   { path: 'orders', component: OrderComponent, canActivate: [AuthguardService] },
   { path: 'orders/administration/management', component: OrderAdministrationComponent, canActivate: [AuthguardService, RoleguardService] },
+  { path: 'payed', component: PayedComponent, canActivate: [AuthguardService] },
   { path: 'user', component: ProfileComponent, canActivate: [AuthguardService] },
   { path: 'user/address/:mode', component: AddressComponent, canActivate: [AuthguardService] },
   { path: '**', redirectTo: '' }

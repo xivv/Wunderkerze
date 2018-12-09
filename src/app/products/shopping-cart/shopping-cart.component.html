@@ -1,6 +1,6 @@
 <section class="section">
   <div class="container">
-    <table class="table">
+    <table class="table is-fullwidth is-striped">
       <tr>
         <th>id</th>
         <th>Produktname</th>
@@ -27,7 +27,8 @@
         </tr>
       </tfoot>
     </table>
-    <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
+    <p [hidden]="isInPayment() || shoppingCartService.isEmpty()" *ngIf="(authService.user | async); else notLoggedIn"
+      class="control">
       <a routerLink="/payment" class="button is-dark">
         Zur Kasse
       </a>

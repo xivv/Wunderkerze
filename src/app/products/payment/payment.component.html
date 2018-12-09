@@ -43,8 +43,8 @@
     <div class="card">
       <div class="card-content">
         <div class="control">
-          <button class="button is-dark" [disabled]="this.paymentForm.invalid || this.shoppingCartService.isEmpty()"
-            (click)="order()">Jetzt kaufen</button>
+          <button [disabled]="this.paymentForm.invalid || this.shoppingCartService.isEmpty()" class="button is-dark"
+            (click)=" order()">Jetzt kaufen</button>
         </div>
       </div>
     </div>

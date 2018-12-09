@@ -24,7 +24,9 @@ export class ProductViewComponent implements OnInit {
     };
   });
 
-  constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService) { }
+  constructor(
+    private productService: ProductService,
+    private shoppingCartService: ShoppingCartService) { }
 
   addToCart(product: Product) {
     this.shoppingCartService.addProductToCart(product);

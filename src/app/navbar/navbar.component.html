@@ -7,12 +7,22 @@
   </p>
   <p class="control">
     <a routerLink="/shopping-cart" class="button is-dark">
-      Warenkorb
+      Warenkorb - {{shoppingCartService.getNumberOfCartItems()}}
     </a>
   </p>
   <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
     <a routerLink="/orders" class="button is-dark">
       Bestellungen
+    </a>
+  </p>
+  <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
+    <a routerLink="/user" class="button is-dark">
+      Mein Konto - {{authService.getUserRole()}}
+    </a>
+  </p>
+  <p *ngIf="(authService.user | async) && roleguardService.isAdmin(); else notLoggedIn" class="control">
+    <a routerLink="/products/administration" class="button is-dark">
+      Administration
     </a>
   </p>
   <p *ngIf="!(authService.user | async); else alreadyLoggedIn" class="control">
@@ -23,16 +33,6 @@
   <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
     <a (click)="logout()" class="button is-dark">
       Logout
-    </a>
-  </p>
-  <p *ngIf="(authService.user | async) && roleguardService.isAdmin(); else notLoggedIn" class="control">
-    <a routerLink="/products/administration" class="button is-dark">
-      Administration
-    </a>
-  </p>
-  <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
-    <a routerLink="/user" class="button is-dark">
-      Mein Konto - {{authService.getUserRole()}}
     </a>
   </p>
 </div>

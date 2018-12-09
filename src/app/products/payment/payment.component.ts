@@ -6,9 +6,10 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Order } from '../statics/Order';
 import { OrderStatus } from '../statics/OrderStatus';
 import { PaymentOption } from '../statics/PaymentOption';
-import { Address } from '../statics/Address';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/messages/alert.service';
+import { Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-payment',
@@ -18,12 +19,14 @@ import { AlertService } from 'src/app/messages/alert.service';
 export class PaymentComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private addressService: AddressService,
     private alertService: AlertService,
     private shoppingCartService: ShoppingCartService,
     private ordersService: OrdersService,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private productService: ProductService
   ) { }
 
   paymentOptions = ['Nachnahme'];
@@ -41,7 +44,7 @@ export class PaymentComponent implements OnInit {
 
   order() {
 
-    if (this.shoppingCartService.isEmpty()) {
+    if (this.shoppingCartService.isEmpty() || this.paymentForm.invalid) {
       return;
     }
 
@@ -54,9 +57,13 @@ export class PaymentComponent implements OnInit {
       paymentOption: this.f.paymentOption.value
     };
 
-    console.log(order);
+    order.cartItems.forEach(element => {
+      this.productService.reduceProductAmount(element.product, element.amount);
+    });
+
     this.ordersService.insertOrder(order);
     this.shoppingCartService.cartItems = [];
+    this.router.navigate(['/payed']);
   }
 
 }

@@ -1,0 +1,14 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Vielen Dank für die Bestellung. Sie wird in kürze von unseren Mitarbeitern verarbeitet!
+    </h1>
+    <div class="field is-grouped is-grouped-centered">
+      <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
+        <a routerLink="/orders" class="button is-dark">
+          Meine Bestellungen
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
