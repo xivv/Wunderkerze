@@ -18,10 +18,9 @@ export class OrdersService {
 
   constructor(private db: AngularFirestore, private authService: AuthService) {
     this.getAllOrders();
-
-    if (this.authService.user) {
-      this.getUserOrders();
-    }
+    this.authService.user.subscribe(
+      val => { this.getUserOrders(); }
+    );
   }
 
   getAllOrders() {
@@ -37,7 +36,8 @@ export class OrdersService {
 
   getUserOrders() {
     this.userOrdersCollection = this.db.collection<Order>('Order',
-      ref => ref.where('userid', '==', this.authService.getUserId()));
+      ref => ref.where('userid', '==', this.authService.getUserId())
+        .orderBy('date', 'desc'));
     this.userOrders = this.userOrdersCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Order;

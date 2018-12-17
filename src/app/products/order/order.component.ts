@@ -4,7 +4,6 @@ import { OrderStatus } from '../statics/OrderStatus';
 import { Order } from '../statics/Order';
 import { ProductConverter } from '../statics/ProductConverter';
 import { CartItem } from '../statics/CartItem';
-import { ActivatedRoute } from '@angular/router';
 import { Address } from '../statics/Address';
 
 @Component({

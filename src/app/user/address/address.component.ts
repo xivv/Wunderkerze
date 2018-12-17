@@ -13,6 +13,13 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AddressComponent implements OnInit {
 
+  constructor(
+    private alertService: AlertService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private addressService: AddressService,
+    private route: ActivatedRoute) { }
+
   address: Address = {
     street: '',
     streetNumber: '',
@@ -26,13 +33,6 @@ export class AddressComponent implements OnInit {
   mode: string;
 
   addressForm: FormGroup;
-
-  constructor(
-    private alertService: AlertService,
-    private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private addressService: AddressService,
-    private route: ActivatedRoute) { }
 
   get f() { return this.addressForm.controls; }
 

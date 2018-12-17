@@ -15,14 +15,13 @@ export class AddressService {
 
   addresses: Observable<Address[]>;
   userAddresses: Observable<Address[]>;
-  address: any;
 
   constructor(private db: AngularFirestore, private authService: AuthService) {
     this.getAllAddresses();
 
-    if (this.authService.user) {
-      this.getUserAddress();
-    }
+    this.authService.user.subscribe(
+      val => { this.getUserAddress(); }
+    );
   }
 
   getAllAddresses() {

@@ -33,6 +33,7 @@ import { PaymentComponent } from './products/payment/payment.component';
 import { OrderAdministrationComponent } from './products/order/order-administration/order-administration.component';
 import { SearchComponent } from './products/search/search.component';
 import { PayedComponent } from './products/payment/payed/payed.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { PayedComponent } from './products/payment/payed/payed.component';
     FormsModule,
     ReactiveFormsModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    OrderModule
   ],
   providers: [AuthService, AuthguardService],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AlertService } from 'src/app/messages/alert.service';
+import { AddressService } from 'src/app/products/statics/services/address.service';
 
 
 interface User {
@@ -25,10 +26,9 @@ interface Role {
 })
 export class AuthService {
 
-  user: Observable<User | null>;
-  role: Observable<Role | null>;
+  user: Observable<User>;
+  role: Observable<Role>;
   roleString: Role;
-  userString: User;
 
   constructor(
     private alertService: AlertService,
@@ -55,8 +55,8 @@ export class AuthService {
         }
       })
     );
-    this.user.subscribe(val => this.userString = val);
   }
+
   getUserRole() {
     if (this.roleString) {
       return this.roleString.role;
@@ -66,8 +66,8 @@ export class AuthService {
   }
 
   getUserId() {
-    if (this.userString) {
-      return this.userString.uid;
+    if (this.afAuth.auth.currentUser) {
+      return this.afAuth.auth.currentUser.uid;
     } else {
       return '';
     }
