@@ -34,6 +34,9 @@ import { OrderAdministrationComponent } from './products/order/order-administrat
 import { SearchComponent } from './products/search/search.component';
 import { PayedComponent } from './products/payment/payed/payed.component';
 import { OrderModule } from 'ngx-order-pipe';
+import { ContactComponent } from './user/contact/contact.component';
+import { ContactManagementComponent } from './products/administration/contact-management/contact-management.component';
+import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { OrderModule } from 'ngx-order-pipe';
     PaymentComponent,
     OrderAdministrationComponent,
     SearchComponent,
-    PayedComponent
+    PayedComponent,
+    ContactComponent,
+    ContactManagementComponent,
+    ContactListingComponent
   ],
   imports: [
     BrowserModule,

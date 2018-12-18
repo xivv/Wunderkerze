@@ -31,10 +31,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response ${captchaResponse}:`);
-  }
-
   onSubmit() {
     this.submitted = true;
 

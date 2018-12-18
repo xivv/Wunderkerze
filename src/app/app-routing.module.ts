@@ -16,6 +16,9 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PaymentComponent } from './products/payment/payment.component';
 import { OrderAdministrationComponent } from './products/order/order-administration/order-administration.component';
 import { PayedComponent } from './products/payment/payed/payed.component';
+import { ContactComponent } from './user/contact/contact.component';
+import { ContactManagementComponent } from './products/administration/contact-management/contact-management.component';
+import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
 
 
 const routes: Routes = [
@@ -33,6 +36,9 @@ const routes: Routes = [
   { path: 'payed', component: PayedComponent, canActivate: [AuthguardService] },
   { path: 'user', component: ProfileComponent, canActivate: [AuthguardService] },
   { path: 'user/address/:mode', component: AddressComponent, canActivate: [AuthguardService] },
+  { path: 'user/contact', component: ContactListingComponent, canActivate: [AuthguardService] },
+  { path: 'contact', component: ContactComponent },
+  { path: 'contact/administration/management', component: ContactManagementComponent, canActivate: [AuthguardService, RoleguardService] },
   { path: '**', redirectTo: '' }
 ];
 

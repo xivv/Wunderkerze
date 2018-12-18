@@ -1,0 +1,78 @@
+<section class="section">
+  <div class="container">
+    <form [formGroup]="contactForm" (ngSubmit)="contact()">
+      <h1 class="title">Kontaktformular</h1>
+      <div class="card">
+        <div class="card-content">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">E-Mail Adresse*</label>
+            </div>
+            <div class="field-body">
+              <input formControlName="emailAddress" type="email" class="input" placeholder="">
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Telefonnummer</label>
+            </div>
+            <div class="field-body">
+              <input formControlName="telefonNumber" type="text" class="input" placeholder="0176/7777777">
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Name*</label>
+            </div>
+            <div class="field-body">
+              <input formControlName="name" type="text" class="input" placeholder="">
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Grund*</label>
+            </div>
+            <div class="field-body">
+              <div class="select">
+                <select formControlName="reason">
+                  <option>Produkt</option>
+                  <option *ngIf="(authService.user | async)">Bestellung</option>
+                  <option>Feedback</option>
+                  <option>Anderes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="hasRelatedElement()" class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label *ngIf="!isOrder()" class="label">Produkt</label>
+              <label *ngIf="isOrder()" class="label">Bestellung</label>
+            </div>
+            <div class="field-body">
+              <div class="select">
+                <select *ngIf="!isOrder()" formControlName="relatedElement">
+                  <option *ngFor="let product of productService.products | async">{{product.name}}</option>
+                </select>
+                <select *ngIf="isOrder()" formControlName="relatedElement">
+                  <option *ngFor="let order of orderService.userOrders | async">{{order.id}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Beschreibung*</label>
+            </div>
+            <div class="field-body">
+              <textarea formControlName="description" class="textarea" placeholder="Max 500 Zeichen" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="field is-horizontal is-centered">
+            <re-captcha formControlName="recaptcha" siteKey="6Lel730UAAAAAHFoG1zZrpuGzdzptZpX1KGEVr0k"></re-captcha>
+          </div>
+          <button [disabled]="this.contactForm.invalid" type="submit" class="button is-dark">Kontaktieren</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

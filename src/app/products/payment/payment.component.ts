@@ -37,7 +37,12 @@ export class PaymentComponent implements OnInit {
     this.paymentForm = this.formBuilder.group({
       selectedAddress: ['', [Validators.required]],
       paymentOption: ['Nachnahme', Validators.required],
+      recaptcha: [null, Validators.required]
     });
+
+    if (this.shoppingCartService.isEmpty()) {
+      this.router.navigate(['/shopping-cart']);
+    }
   }
 
   get f() { return this.paymentForm.controls; }

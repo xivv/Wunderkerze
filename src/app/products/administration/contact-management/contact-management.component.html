@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <div *ngFor="let contact of contactService.contacts | async">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{contact.name}} <br>
+            {{contact.email}} <br>
+            {{contact.telefonNumber}} <br>
+            {{ contact.date.seconds *
+            1000 | date:'dd.MM.yyyy'
+            }}</p>
+        </header>
+        <div class="card-content">
+          <h1 class="title">{{contact.reason}}</h1>
+          <div *ngIf="contact.relatedElement">
+            <p>Zugeordnetes Element:
+              <br> [{{contact.relatedElement}}]</p><br>
+          </div>
+          <p>{{contact.description}} </p>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</section>

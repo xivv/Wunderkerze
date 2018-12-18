@@ -65,6 +65,14 @@ export class AuthService {
     }
   }
 
+  getUserEmail() {
+    if (this.afAuth.auth.currentUser) {
+      return this.afAuth.auth.currentUser.email;
+    } else {
+      return '';
+    }
+  }
+
   getUserId() {
     if (this.afAuth.auth.currentUser) {
       return this.afAuth.auth.currentUser.uid;

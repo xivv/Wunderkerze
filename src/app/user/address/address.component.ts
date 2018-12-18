@@ -38,12 +38,13 @@ export class AddressComponent implements OnInit {
 
   ngOnInit() {
     this.mode = this.route.snapshot.paramMap.get('mode');
+
     this.addressForm = this.formBuilder.group({
-      firstname: ['', [Validators.required]],
-      name: ['', Validators.required],
-      street: ['', Validators.required],
-      streetNumber: ['', Validators.required],
-      city: ['', Validators.required],
+      firstname: ['', [Validators.required, Validators.maxLength(50)]],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      street: ['', [Validators.required, Validators.maxLength(100)]],
+      streetNumber: ['', [Validators.required, Validators.maxLength(20)]],
+      city: ['', [Validators.required, Validators.maxLength(50)]],
       postCode: ['', [Validators.required, Validators.min(10000), Validators.max(99999)]],
       country: ['', Validators.required]
     });
