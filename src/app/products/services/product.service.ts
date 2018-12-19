@@ -40,6 +40,6 @@ export class ProductService {
 
   insertProduct(product: Product) {
     this.productsCollection.add(product);
-    this.alertService.success('Product added to productlist: ' + product.name);
+    this.alertService.success('Produkt erfolgreich hinzugefügt: ' + product.name);
   }
 }

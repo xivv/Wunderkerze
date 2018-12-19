@@ -19,9 +19,12 @@ import { PayedComponent } from './products/payment/payed/payed.component';
 import { ContactComponent } from './user/contact/contact.component';
 import { ContactManagementComponent } from './products/administration/contact-management/contact-management.component';
 import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
+import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
+import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
 
 
 const routes: Routes = [
+  { path: 'resetpassword', component: ResetpasswordComponent },
   { path: 'products', component: ProductViewComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'products/administration', component: AdministrationComponent, canActivate: [AuthguardService, RoleguardService] },
@@ -32,7 +35,14 @@ const routes: Routes = [
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'orders', component: OrderComponent, canActivate: [AuthguardService] },
-  { path: 'orders/administration/management', component: OrderAdministrationComponent, canActivate: [AuthguardService, RoleguardService] },
+  {
+    path: 'orders/administration/management/:filter', component: OrderAdministrationComponent,
+    canActivate: [AuthguardService, RoleguardService]
+  },
+  {
+    path: 'orders/administration/overview', component: OrderAdministrationOverviewComponent,
+    canActivate: [AuthguardService, RoleguardService]
+  },
   { path: 'payed', component: PayedComponent, canActivate: [AuthguardService] },
   { path: 'user', component: ProfileComponent, canActivate: [AuthguardService] },
   { path: 'user/address/:mode', component: AddressComponent, canActivate: [AuthguardService] },

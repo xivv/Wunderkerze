@@ -51,7 +51,7 @@ export class ShoppingCartService {
       product: product
     };
     this.cartItems.push(cartItem);
-    this.alertService.success('Product added to cart!: ' + cartItem.product.name);
+    this.alertService.success('Produkt erfolgreich zum Warenkorb hinzugefügt: ' + cartItem.product.name);
   }
 
   removeProductFromCart(product: Product) {

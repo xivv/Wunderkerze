@@ -3,8 +3,8 @@ import { OrdersService } from '../services/orders.service';
 import { ProductConverter } from '../../statics/ProductConverter';
 import { CartItem } from '../../statics/CartItem';
 import { Order } from '../../statics/Order';
-import { OrderStatus } from '../../statics/OrderStatus';
 import { Address } from '../../statics/Address';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-administration',
@@ -13,13 +13,16 @@ import { Address } from '../../statics/Address';
 })
 export class OrderAdministrationComponent implements OnInit {
 
-  statuses = [0, 1, 2, 3, 4];
+  statuses = ['Bestellt', 'In Bearbeitung', 'Erwarte Zahlung', 'Zahlung erhalten', 'In Zustellung'];
 
   constructor(
-    private ordersService: OrdersService) {
+    private ordersService: OrdersService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    const filter = this.route.snapshot.paramMap.get('filter');
+    this.ordersService.getFilteredOrders(filter);
   }
 
   getFormatedAddress(address: Address) {
@@ -31,10 +34,6 @@ export class OrderAdministrationComponent implements OnInit {
 
   updateOrder(order: Order) {
     this.ordersService.updateOrder(order);
-  }
-
-  getOrderStatusString(index: number) {
-    return OrderStatus[index];
   }
 
   getCartItemPrice(cartItem: CartItem): string {

@@ -37,6 +37,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { ContactComponent } from './user/contact/contact.component';
 import { ContactManagementComponent } from './products/administration/contact-management/contact-management.component';
 import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
+import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
+import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { ContactListingComponent } from './user/contact/contact-listing/contact-
     PayedComponent,
     ContactComponent,
     ContactManagementComponent,
-    ContactListingComponent
+    ContactListingComponent,
+    ResetpasswordComponent,
+    OrderAdministrationOverviewComponent
   ],
   imports: [
     BrowserModule,

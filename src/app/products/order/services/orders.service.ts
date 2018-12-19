@@ -12,14 +12,28 @@ export class OrdersService {
 
   private ordersCollection: AngularFirestoreCollection<Order>;
   private userOrdersCollection: AngularFirestoreCollection<Order>;
+  private filteredOrdersCollection: AngularFirestoreCollection<Order>;
+
   orders: Observable<Order[]>;
   userOrders: Observable<Order[]>;
+  filteredOrders: Observable<Order[]>;
   order: any;
 
   constructor(private db: AngularFirestore, private authService: AuthService) {
     this.getAllOrders();
     this.authService.user.subscribe(
       val => { this.getUserOrders(); }
+    );
+  }
+
+  getFilteredOrders(filter: string) {
+    this.filteredOrdersCollection = this.db.collection<Order>('Order', ref => ref.where('orderStatus', '==', filter));
+    this.filteredOrders = this.filteredOrdersCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Order;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
     );
   }
 

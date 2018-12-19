@@ -92,7 +92,10 @@ export class AuthService {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
       credential => {
         this.router.navigate(['/login']);
-        this.alertService.success('Registering successful! Please verify your email.');
+        this.alertService.success('Erfolgreich registriert! Sie erhalten in Kürze eine Bestätigungsemail');
+        this.afAuth.auth.sendSignInLinkToEmail(email, {
+          url: 'https://www.google.com/'
+        });
         return this.updateUserData(credential.user);
       }
     )
@@ -107,6 +110,10 @@ export class AuthService {
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));
+  }
+
+  resetPassword(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email);
   }
 
   private updateUserData(user: User) {

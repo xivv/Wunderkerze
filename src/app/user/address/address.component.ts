@@ -53,7 +53,7 @@ export class AddressComponent implements OnInit {
   onSubmit(address: Address) {
 
     if (this.addressForm.invalid) {
-      this.alertService.error('Please check your information');
+      this.alertService.error('Bitte überprüfen Sie Ihre Angaben');
       return;
     }
 
@@ -70,23 +70,23 @@ export class AddressComponent implements OnInit {
 
   deleteAddress(address: Address) {
     this.addressService.deleteAddress(address);
-    this.alertService.success('Address deleted sucessful');
+    this.alertService.success('Adresse erfolgreich gelöscht');
   }
 
   insertAddress() {
     this.address.userid = this.authService.getUserId();
     this.addressService.insertAddress(this.address);
-    this.alertService.success('Address inserted sucessful');
+    this.alertService.success('Adresse erfolgreich erstellt');
   }
 
   updateAddress(address: Address) {
 
     if (address.firstname === '') {
-      this.alertService.error('Address update failure');
+      this.alertService.error('Adresse konnte nicht aktualisiert werden');
       return;
     }
 
     this.addressService.updateAddress(address);
-    this.alertService.success('Address update sucessful');
+    this.alertService.success('Adresse erfolgreich aktualisiert');
   }
 }

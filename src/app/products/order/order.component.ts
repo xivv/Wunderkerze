@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './services/orders.service';
-import { OrderStatus } from '../statics/OrderStatus';
 import { Order } from '../statics/Order';
 import { ProductConverter } from '../statics/ProductConverter';
 import { CartItem } from '../statics/CartItem';
@@ -26,10 +25,6 @@ export class OrderComponent implements OnInit {
             ${address.street} ${address.streetNumber},
             ${address.postCode} ${address.city},
             ${address.country}`;
-  }
-
-  getOrderStatusString(index: number) {
-    return OrderStatus[index];
   }
 
   getCartItemPrice(cartItem: CartItem): string {

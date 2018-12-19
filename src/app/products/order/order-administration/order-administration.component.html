@@ -1,7 +1,7 @@
 <section class="section">
   <div class="container">
 
-    <div *ngFor="let order of ordersService.orders | async">
+    <div *ngFor="let order of ordersService.filteredOrders | async">
       <div class="card">
         <header class="card-header">
           <p class="card-header-title">Bestellung aufgegeben <br> {{ order.date.seconds * 1000 | date:'dd.MM.yyyy'
@@ -9,7 +9,6 @@
           <p class="card-header-title">Lieferadresse
             <br> {{getFormatedAddress(order.address)}}</p>
           <span class="card-header-icon" aria-label="more options">
-            <span class="tag is-info is-large">{{getOrderStatusString(order.orderStatus)}}</span>
             <div class="select">
               <select [(ngModel)]="order.orderStatus">
                 <option *ngFor="let status of statuses">{{status}}</option>

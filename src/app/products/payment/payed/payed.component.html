@@ -1,7 +1,8 @@
 <section class="section">
   <div class="container">
     <h1 class="title">
-      Vielen Dank für die Bestellung. Sie wird in kürze von unseren Mitarbeitern verarbeitet!
+      Vielen Dank für Ihre Bestellung. Sie wird in kürze von unseren Mitarbeitern verarbeitet!
+      Den Status Ihrer Bestellung können sie jederzeit unter 'Meine Bestellungen' einsehen.
     </h1>
     <div class="field is-grouped is-grouped-centered">
       <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
@@ -9,6 +10,25 @@
           Meine Bestellungen
         </a>
       </p>
+    </div>
+    <br>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Unsere Kontodaten
+        </p>
+      </header>
+      <div class="card-content">
+        <p>
+          Zahlungsempfänger: Royal High
+        </p>
+        <p>
+          BLZ: 50010517
+        </p>
+        <p>
+          IBAN: DE12 5001 0517 0648 4898 90
+        </p>
+      </div>
     </div>
   </div>
 </section>

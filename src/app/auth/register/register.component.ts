@@ -36,12 +36,12 @@ export class RegisterComponent implements OnInit {
 
 
     if (this.registerForm.invalid) {
-      this.alertService.error('Please enter valid information');
+      this.alertService.error('Bitte geben sie vernünftige Eingaben an');
       return;
     }
 
     if (this.f.password.value !== this.f.repeatPassword.value) {
-      this.alertService.error('The password is wrong');
+      this.alertService.error('Das widerholen des Passwords ist fehlgeschlagen');
       return;
     }
     this.authService.emailSignUp(this.f.email.value, this.f.password.value);

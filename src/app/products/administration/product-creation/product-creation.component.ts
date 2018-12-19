@@ -37,7 +37,7 @@ export class ProductCreationComponent implements OnInit {
     console.log(this.f.label.value);
 
     if (this.productForm.invalid) {
-      this.alertService.error('Please enter all information');
+      this.alertService.error('Bitte alle Informationen angeben');
       return;
     }
 

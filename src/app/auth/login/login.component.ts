@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
-      this.alertService.error('Please enter an email aswell as a password.');
+      this.alertService.error('Bitte geben sie E-Mail und Password ein.');
       return;
     }
     this.authService.emailLogin(this.f.email.value, this.f.password.value);

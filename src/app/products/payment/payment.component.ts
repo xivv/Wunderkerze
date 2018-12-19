@@ -4,8 +4,6 @@ import { ShoppingCartService } from '../shopping-cart/services/shopping-cart.ser
 import { OrdersService } from '../order/services/orders.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Order } from '../statics/Order';
-import { OrderStatus } from '../statics/OrderStatus';
-import { PaymentOption } from '../statics/PaymentOption';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/messages/alert.service';
 import { Router } from '@angular/router';
@@ -29,8 +27,7 @@ export class PaymentComponent implements OnInit {
     private productService: ProductService
   ) { }
 
-  paymentOptions = ['Nachnahme'];
-  selectedPaymentOption: PaymentOption;
+  paymentOptions = ['Nachnahme', 'Vorkasse'];
   paymentForm: FormGroup;
 
   ngOnInit() {
@@ -56,7 +53,7 @@ export class PaymentComponent implements OnInit {
     const order: Order = {
       cartItems: this.shoppingCartService.cartItems,
       userid: this.authService.getUserId(),
-      orderStatus: OrderStatus.BESTELLT,
+      orderStatus: 'Bestellt',
       date: new Date(),
       address: this.f.selectedAddress.value,
       paymentOption: this.f.paymentOption.value

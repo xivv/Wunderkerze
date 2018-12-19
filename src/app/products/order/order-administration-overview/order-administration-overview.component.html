@@ -1,0 +1,9 @@
+<section class="section">
+  <div class="container">
+    <div class="card" *ngFor="let status of statuses">
+      <div class="card-content">
+        <a routerLink="/orders/administration/management/{{status}}">{{status}}</a>
+      </div>
+    </div>
+  </div>
+</section>
