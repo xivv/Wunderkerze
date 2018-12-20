@@ -39,6 +39,8 @@ import { ContactManagementComponent } from './products/administration/contact-ma
 import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
 import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
 import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
+import { AgbComponent } from './user/agb/agb.component';
+import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { OrderAdministrationOverviewComponent } from './products/order/order-adm
     ContactManagementComponent,
     ContactListingComponent,
     ResetpasswordComponent,
-    OrderAdministrationOverviewComponent
+    OrderAdministrationOverviewComponent,
+    AgbComponent,
+    PaymentinformationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { CartItem } from '../statics/CartItem';
 import { ProductConverter } from '../statics/ProductConverter';
@@ -13,6 +13,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
+
+  @Input() sendingCosts: number;
+  @Input() additionalCosts: number;
 
   constructor(
     private addressService: AddressService,
@@ -45,7 +48,11 @@ export class ShoppingCartComponent implements OnInit {
     return url === '/payment';
   }
 
-  getTotal() {
+  convertToString(price: number) {
+    return ProductConverter.convertToPriceEURString(price);
+  }
+
+  getTotal(withAdditions: boolean) {
     let totalCost = 0;
     this.shoppingCartService.cartItems.forEach(element => {
       totalCost += element.amount * element.product.price;
@@ -54,7 +61,14 @@ export class ShoppingCartComponent implements OnInit {
     if (totalCost === 0) {
       return '0';
     }
-    return ProductConverter.convertToPriceEURString(totalCost);
+    if (withAdditions) {
+
+      totalCost += this.sendingCosts * 1 + this.additionalCosts * 1;
+      return ProductConverter.convertToPriceEURString(totalCost);
+    } else {
+      return ProductConverter.convertToPriceEURString(totalCost);
+    }
+
   }
 
 }

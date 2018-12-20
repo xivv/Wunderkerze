@@ -9,4 +9,6 @@ export interface Order {
     date: Date;
     address: Address;
     paymentOption: string;
+    sendingCosts: number;
+    additionalCosts: number;
 }

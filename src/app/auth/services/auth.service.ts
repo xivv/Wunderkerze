@@ -106,7 +106,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(credential => {
-        this.router.navigate(['/protected']);
+        this.router.navigate(['/products']);
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));

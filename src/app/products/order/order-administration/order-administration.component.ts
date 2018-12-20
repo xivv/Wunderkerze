@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class OrderAdministrationComponent implements OnInit {
 
   statuses = ['Bestellt', 'In Bearbeitung', 'Erwarte Zahlung', 'Zahlung erhalten', 'In Zustellung'];
+  filter: string;
 
   constructor(
     private ordersService: OrdersService,
@@ -21,8 +22,8 @@ export class OrderAdministrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    const filter = this.route.snapshot.paramMap.get('filter');
-    this.ordersService.getFilteredOrders(filter);
+    this.filter = this.route.snapshot.paramMap.get('filter');
+    this.ordersService.getFilteredOrders(this.filter);
   }
 
   getFormatedAddress(address: Address) {
@@ -45,6 +46,7 @@ export class OrderAdministrationComponent implements OnInit {
     order.cartItems.forEach(element => {
       totalCost += element.amount * element.product.price;
     });
+    totalCost += order.additionalCosts * 1 + order.sendingCosts * 1;
     return ProductConverter.convertToPriceEURString(totalCost);
   }
 }

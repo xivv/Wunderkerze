@@ -29,13 +29,27 @@ export class PaymentComponent implements OnInit {
 
   paymentOptions = ['Nachnahme', 'Vorkasse'];
   paymentForm: FormGroup;
+  additionalCosts = 100;
+
 
   ngOnInit() {
     this.paymentForm = this.formBuilder.group({
       selectedAddress: ['', [Validators.required]],
       paymentOption: ['Nachnahme', Validators.required],
-      recaptcha: [null, Validators.required]
+      recaptcha: [null, Validators.required],
+      agb: [false, [Validators.required, Validators.requiredTrue]]
     });
+
+    this.paymentForm.get('paymentOption').valueChanges.subscribe(
+      val => {
+        if (val === 'Nachnahme') {
+          this.additionalCosts = 100;
+        } else {
+          this.additionalCosts = null;
+        }
+      }
+    );
+
 
     if (this.shoppingCartService.isEmpty()) {
       this.router.navigate(['/shopping-cart']);
@@ -56,7 +70,9 @@ export class PaymentComponent implements OnInit {
       orderStatus: 'Bestellt',
       date: new Date(),
       address: this.f.selectedAddress.value,
-      paymentOption: this.f.paymentOption.value
+      paymentOption: this.f.paymentOption.value,
+      sendingCosts: 350,
+      additionalCosts: this.additionalCosts
     };
 
     order.cartItems.forEach(element => {
