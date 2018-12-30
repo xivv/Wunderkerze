@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AlertService } from 'src/app/messages/alert.service';
-import { AddressService } from 'src/app/products/statics/services/address.service';
-
 
 interface User {
   uid: string;
@@ -14,6 +12,7 @@ interface User {
   photoURL?: string;
   displayName?: string;
   role?: string;
+  emailVerified?: boolean;
 }
 
 interface Role {
@@ -38,7 +37,7 @@ export class AuthService {
 
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
-        if (user) {
+        if (user && user.emailVerified) {
           this.role = this.afAuth.authState.pipe(
             switchMap(role => {
               if (role) {
@@ -51,6 +50,10 @@ export class AuthService {
           this.role.subscribe(val => this.roleString = val);
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
+
+          if (user && !user.emailVerified) {
+            this.alertService.error('Die E-Mail zu dem zugehörigen Konto ist noch nicht bestätigt.');
+          }
           return of(null);
         }
       })
@@ -88,14 +91,21 @@ export class AuthService {
     });
   }
 
+  isVerified(): boolean {
+    return this.afAuth.auth.currentUser.emailVerified;
+  }
+
   async emailSignUp(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
       credential => {
         this.router.navigate(['/login']);
         this.alertService.success('Erfolgreich registriert! Sie erhalten in Kürze eine Bestätigungsemail');
-        this.afAuth.auth.sendSignInLinkToEmail(email, {
-          url: 'https://www.google.com/'
-        });
+        this.afAuth.auth.currentUser.sendEmailVerification().then((success) =>
+          console.log('email send XOXO')).catch(
+            (err) => {
+              this.handleError(err);
+            }
+          );
         return this.updateUserData(credential.user);
       }
     )
@@ -106,10 +116,20 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(credential => {
-        this.router.navigate(['/products']);
+
+        if (!this.isVerified()) {
+          this.alertService.error('Die E-Mail zu dem zugehörigen Konto ist noch nicht bestätigt.');
+          this.router.navigate(['/login']);
+        } else {
+          this.router.navigate(['/products']);
+        }
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));
+  }
+
+  resendVerifiedEmail(email: string) {
+    return this.afAuth.auth.currentUser.sendEmailVerification();
   }
 
   resetPassword(email: string) {

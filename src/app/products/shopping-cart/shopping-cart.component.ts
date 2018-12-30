@@ -63,7 +63,7 @@ export class ShoppingCartComponent implements OnInit {
     }
     if (withAdditions) {
 
-      totalCost += this.sendingCosts * 1 + this.additionalCosts * 1;
+      totalCost += this.sendingCosts + this.additionalCosts;
       return ProductConverter.convertToPriceEURString(totalCost);
     } else {
       return ProductConverter.convertToPriceEURString(totalCost);

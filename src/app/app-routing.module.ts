@@ -31,13 +31,22 @@ const routes: Routes = [
   { path: 'resetpassword', component: ResetpasswordComponent },
   { path: 'products', component: ProductViewComponent },
   { path: 'product/:id', component: ProductComponent },
-  { path: 'products/administration', component: AdministrationComponent, canActivate: [AuthguardService, RoleguardService] },
-  { path: 'product/administration/creation', component: ProductCreationComponent, canActivate: [AuthguardService, RoleguardService] },
-  { path: 'product/administration/management', component: ProductManagementComponent, canActivate: [AuthguardService, RoleguardService] },
+  {
+    path: 'products/administration', component: AdministrationComponent,
+    canActivate: [AuthguardService, RoleguardService]
+  },
+  {
+    path: 'product/administration/creation', component: ProductCreationComponent,
+    canActivate: [AuthguardService, RoleguardService]
+  },
+  {
+    path: 'product/administration/management', component: ProductManagementComponent,
+    canActivate: [AuthguardService, RoleguardService]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'payment', component: PaymentComponent },
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthguardService] },
   { path: 'orders', component: OrderComponent, canActivate: [AuthguardService] },
   {
     path: 'orders/administration/management/:filter', component: OrderAdministrationComponent,
@@ -52,7 +61,10 @@ const routes: Routes = [
   { path: 'user/address/:mode', component: AddressComponent, canActivate: [AuthguardService] },
   { path: 'user/contact', component: ContactListingComponent, canActivate: [AuthguardService] },
   { path: 'contact', component: ContactComponent },
-  { path: 'contact/administration/management', component: ContactManagementComponent, canActivate: [AuthguardService, RoleguardService] },
+  {
+    path: 'contact/administration/management', component: ContactManagementComponent,
+    canActivate: [AuthguardService, RoleguardService]
+  },
   { path: '**', redirectTo: '' }
 ];
 

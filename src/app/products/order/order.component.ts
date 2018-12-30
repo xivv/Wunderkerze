@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
     order.cartItems.forEach(element => {
       totalCost += element.amount * element.product.price;
     });
-    totalCost += order.additionalCosts * 1 + order.sendingCosts * 1;
+    totalCost += order.additionalCosts + order.sendingCosts;
     return ProductConverter.convertToPriceEURString(totalCost);
   }
 
