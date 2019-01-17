@@ -60,7 +60,8 @@ export class ProductCreationComponent implements OnInit {
       description: this.f.description.value,
       image: this.f.image.value,
       priceAndSizes: this.f.priceAndSize.value,
-      type: this.f.type.value
+      type: this.f.type.value,
+      ratings: []
     };
 
     console.log(product);

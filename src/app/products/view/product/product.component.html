@@ -25,5 +25,25 @@
         <p [hidden]="!product.amount <= 0">Ausverkauft</p>
       </button>
     </p>
+    <br>
+    <div class="box">
+      <h1 class="title is-4">Bewertungen</h1>
+      <form [formGroup]="ratingForm" (ngSubmit)="rate()">
+        <div class="control">
+          <label class="label">Rating</label>
+          <input class="input" type="number" formControlName="rating" placeholder="Rating">
+        </div>
+        <br>
+        <textarea formControlName="description" class="textarea" placeholder=""></textarea>
+        <br>
+        <button [disabled]="this.ratingForm.invalid || alreadyRated()" type="submit" class="button is-dark">Bewerten</button>
+      </form>
+    </div>
+    <div class="box">
+      <h1 class="title is-4">Bewertungen der anderen Benutzer {{totalRating()}}/5</h1>
+      <div class="box" *ngFor="let rating of product.ratings">
+        <textarea [disabled]="true" class="textarea" placeholder="">{{rating.rating}}/5: {{rating.description}}</textarea>
+      </div>
+    </div>
   </div>
 </section>

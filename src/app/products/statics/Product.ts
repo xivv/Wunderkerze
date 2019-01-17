@@ -1,4 +1,5 @@
 import { PriceAndSize } from './PriceAndSize';
+import { Rating } from './Rating';
 
 
 export interface Product {
@@ -9,4 +10,5 @@ export interface Product {
     name: string;
     priceAndSizes: PriceAndSize[];
     type: string;
+    ratings: Rating[];
 }

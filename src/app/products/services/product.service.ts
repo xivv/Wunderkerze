@@ -57,4 +57,8 @@ export class ProductService {
     this.productsCollection.add(product);
     this.alertService.success('Produkt erfolgreich hinzugefügt: ' + product.name);
   }
+
+  updateProduct(product: Product) {
+    this.productsCollection.doc(product.id).update(product);
+  }
 }
