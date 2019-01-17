@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="container">
+    <div class="container">
+
+      <div class="card" *ngFor="let product of productService.merchandise | async">
+        <div class="card-content">
+          <figure class="image is-128x128">
+            <img src="{{product.image}}">
+          </figure>
+          <a routerLink="/product/{{product.id}}">{{product.name}}</a>
+          <p class="control">
+            <button [disabled]="product.amount <= 0" (click)="addToCart(product)" class="button is-dark">
+              <p [hidden]="product.amount <= 0">In den Warenkorb</p>
+              <p [hidden]="!product.amount <= 0">Ausverkauft</p>
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

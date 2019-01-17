@@ -28,15 +28,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   decreaseProductAmount(cartItem: CartItem) {
-    this.shoppingCartService.removeProductFromCart(cartItem.product);
+    this.shoppingCartService.removeProductFromCart(cartItem.product, cartItem.priceAndSize.size);
   }
 
   increaseProductAmount(cartItem: CartItem) {
-    this.shoppingCartService.addProductToCart(cartItem.product);
+    this.shoppingCartService.addProductToCart(cartItem.product, cartItem.priceAndSize);
   }
 
   getPrice(cartItem: CartItem): string {
-    return ProductConverter.convertToPriceEURString(cartItem.amount * cartItem.product.price);
+    return ProductConverter.convertToPriceEURString(cartItem.amount * cartItem.priceAndSize.price);
   }
 
   isNotEmpty() {
@@ -55,7 +55,7 @@ export class ShoppingCartComponent implements OnInit {
   getTotal(withAdditions: boolean) {
     let totalCost = 0;
     this.shoppingCartService.cartItems.forEach(element => {
-      totalCost += element.amount * element.product.price;
+      totalCost += element.amount * element.priceAndSize.price;
     });
 
     if (totalCost === 0) {

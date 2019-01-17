@@ -10,26 +10,12 @@ import { ShoppingCartService } from '../../shopping-cart/services/shopping-cart.
 })
 export class ProductViewComponent implements OnInit {
 
-  index = 0;
-  infinite = true;
-  direction = 'right';
-  directionToggle = true;
-  autoplay = true;
-  avatars = '1234567890'.split('').map((x, i) => {
-    const num = i;
-    // const num = Math.floor(Math.random() * 1000);
-    return {
-      url: `https://picsum.photos/600/400/?${num}`,
-      title: `${num}`
-    };
-  });
-
   constructor(
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService) { }
 
   addToCart(product: Product) {
-    this.shoppingCartService.addProductToCart(product);
+    this.shoppingCartService.addProductToCart(product, product.priceAndSizes[0]);
   }
 
   ngOnInit() {

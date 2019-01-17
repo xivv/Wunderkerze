@@ -1,23 +1,28 @@
-<section class="section">
+<section class="section" *ngIf="selectedPriceAndSize">
   <div class="container">
-    <p>{{productService.product.name}}</p>
-    <p>{{productService.product.description}}</p>
-    <p>Vorrat: {{productService.product.amount}} stk.</p>
+    <p>{{product.name}}</p>
+    <p>{{product.description}}</p>
+    <p>Vorrat: {{getRemainingAmount(product.amount)}} stk.</p>
     <p>Preis: EUR {{getPrice()}}</p>
-    <p>Größe: {{productService.product.size}}</p>
-
-
-    <div class="tags are-medium">
-      <span class="tag is-black is-medium" *ngFor="let label of productService.product.label">{{label}}</span>
-    </div>
+    <p>Verfügbare Größen:</p>
 
     <figure class="image is-128x128">
-      <img src="{{productService.product.image}}">
+      <img src="{{product.image}}">
     </figure>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="select">
+          <select [(ngModel)]="selectedPriceAndSize">
+            <option [ngValue]="priceAndSize" *ngFor="let priceAndSize of product.priceAndSizes">{{priceAndSize.size}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <p class="control">
-      <button (click)="addToCart()" [disabled]="productService.product.amount <= 0" class="button is-dark">
-        <p [hidden]="productService.product.amount <= 0">In den Warenkorb</p>
-        <p [hidden]="!productService.product.amount <= 0">Ausverkauft</p>
+      <button (click)="addToCart()" [disabled]="product.amount <= 0" class="button is-dark">
+        <p [hidden]="!product.amount > 0">In den Warenkorb</p>
+        <p [hidden]="!product.amount <= 0">Ausverkauft</p>
       </button>
     </p>
   </div>

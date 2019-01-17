@@ -28,13 +28,13 @@ export class OrderComponent implements OnInit {
   }
 
   getCartItemPrice(cartItem: CartItem): string {
-    return ProductConverter.convertToPriceEURString(cartItem.product.price);
+    return ProductConverter.convertToPriceEURString(cartItem.priceAndSize.price);
   }
 
   getTotal(order: Order) {
     let totalCost = 0;
     order.cartItems.forEach(element => {
-      totalCost += element.amount * element.product.price;
+      totalCost += element.amount * element.priceAndSize.price;
     });
     totalCost += order.additionalCosts + order.sendingCosts;
     return ProductConverter.convertToPriceEURString(totalCost);

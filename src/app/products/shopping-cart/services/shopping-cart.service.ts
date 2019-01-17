@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../../statics/CartItem';
 import { Product } from '../../statics/Product';
-import { Observable, of } from 'rxjs';
 import { AlertService } from 'src/app/messages/alert.service';
+import { PriceAndSize } from '../../statics/PriceAndSize';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class ShoppingCartService {
     return counter;
   }
 
-  addProductToCart(product: Product) {
+  addProductToCart(product: Product, priceAndSize: PriceAndSize) {
 
     if (product.amount <= 0) {
       return;
@@ -36,7 +36,7 @@ export class ShoppingCartService {
     let newProduct = true;
 
     this.cartItems.forEach(element => {
-      if (element.product.id === product.id) {
+      if (element.product.id === product.id && element.priceAndSize.size === priceAndSize.size) {
         element.amount++;
         newProduct = false;
       }
@@ -48,18 +48,19 @@ export class ShoppingCartService {
 
     const cartItem: CartItem = {
       amount: 1,
-      product: product
+      product: product,
+      priceAndSize: priceAndSize
     };
     this.cartItems.push(cartItem);
     this.alertService.success('Produkt erfolgreich zum Warenkorb hinzugefügt: ' + cartItem.product.name);
   }
 
-  removeProductFromCart(product: Product) {
+  removeProductFromCart(product: Product, size: string) {
     let indexToRemove = -1;
     for (let index = 0; index < this.cartItems.length; index++) {
       const element = this.cartItems[index];
 
-      if (element.product.id === product.id) {
+      if (element.product.id === product.id && element.priceAndSize.size === size) {
 
         if (element.amount > 1) {
           element.amount--;

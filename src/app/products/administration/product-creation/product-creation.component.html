@@ -1,74 +1,101 @@
 <section class="section">
   <div class="container">
+
     <form [formGroup]="productForm">
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Produktname</label>
+      <div class="box">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Produktname</label>
+          </div>
+          <div class="field-body">
+            <input formControlName="name" type="text" class="input" placeholder="Produktname">
+          </div>
         </div>
-        <div class="field-body">
-          <input formControlName="name" type="text" class="input" placeholder="Produktname">
-        </div>
-      </div>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Auf Lager</label>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Auf Lager</label>
+          </div>
+          <div class="field-body">
+            <input formControlName="amount" type="number" class="input" placeholder="100">
+          </div>
         </div>
-        <div class="field-body">
-          <input formControlName="amount" type="text" class="input" placeholder="100">
-        </div>
-      </div>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Beschreibung</label>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Beschreibung</label>
+          </div>
+          <div class="field-body">
+            <input formControlName="description" type="text" class="input" placeholder="Dieses Produkt...">
+          </div>
         </div>
-        <div class="field-body">
-          <input formControlName="description" type="text" class="input" placeholder="Dieses Produkt...">
-        </div>
-      </div>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Bild</label>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Bild</label>
+          </div>
+          <div class="field-body">
+            <input formControlName="image" type="text" class="input" placeholder="https://upload.wikimedia.org/wikipedia/commons/e/e5/Crystal_Project_cookie.png">
+          </div>
         </div>
-        <div class="field-body">
-          <input formControlName="image" type="text" class="input" placeholder="https://upload.wikimedia.org/wikipedia/commons/e/e5/Crystal_Project_cookie.png">
-        </div>
-      </div>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Produktpreis</label>
-        </div>
-        <div class="field-body">
-          <input formControlName="price" type="number" class="input" placeholder="Produktpreis (3999 = 39,99€)">
-        </div>
-      </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Mengenangabe</label>
-        </div>
-        <div class="field-body">
-          <input formControlName="size" type="string" class="input" placeholder="100ml">
-        </div>
-      </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Stichwörter</label>
-        </div>
-        <div class="field-body">
-          <div class="select is-multiple">
-            <select multiple formControlName="label">
-              <option>Frucht</option>
-            </select>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Typ</label>
+          </div>
+          <div class="field-body">
+            <div class="select">
+              <select formControlName="type">
+                <option>Produkt</option>
+                <option>Merchandise</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
+      <div class="box">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Produktpreis</label>
+          </div>
+          <div class="field-body">
+            <input formControlName="price" type="number" class="input" placeholder="Produktpreis (3999 = 39,99€)">
+          </div>
+        </div>
 
-      <button type="submit" class="button is-dark" (click)="createProduct()">Produkt anlegen</button>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Größe</label>
+          </div>
+          <div class="field-body">
+            <input type="string" formControlName="size" class="input" placeholder="100ml oder S/M">
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-centered">
+          <p class="control">
+            <a (click)="addSize()" class="button is-info">
+              Preis mit Größe hinzufügen
+            </a>
+          </p>
+        </div>
+
+        <table class="table is-fullwidth is-striped">
+          <tr>
+            <th>Größe</th>
+            <th>Preis</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let priceAndSize of f.priceAndSize.value;let i = index">
+            <td>{{priceAndSize.size}}</td>
+            <td>{{convertToString(priceAndSize.price)}}€</td>
+            <td><a class="button is-danger" (click)="removeSize(i)">-</a></td>
+          </tr>
+        </table>
+      </div>
+
+      <button [disabled]="productForm.invalid" type="submit" class="button is-dark" (click)="createProduct()">Produkt
+        anlegen</button>
     </form>
   </div>
 </section>

@@ -23,12 +23,16 @@ import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.compo
 import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
 import { AgbComponent } from './user/agb/agb.component';
 import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
+import { ImpressumComponent } from './user/impressum/impressum.component';
+import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/merchandise-view.component';
 
 
 const routes: Routes = [
   { path: 'paymentinformation', component: PaymentinformationComponent },
   { path: 'agb', component: AgbComponent },
+  { path: 'impressum', component: ImpressumComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'merchandise', component: MerchandiseViewComponent },
   { path: 'products', component: ProductViewComponent },
   { path: 'product/:id', component: ProductComponent },
   {

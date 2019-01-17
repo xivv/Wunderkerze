@@ -4,6 +4,7 @@
       <tr>
         <th>Produktname</th>
         <th>Produkt</th>
+        <th>Größe</th>
         <th>Menge</th>
         <th>Preis</th>
         <th>Aktionen</th>
@@ -14,6 +15,9 @@
           <figure class="image is-128x128">
             <img src="{{item.product.image}}">
           </figure>
+        </td>
+        <td>
+          {{item.priceAndSize.size}}
         </td>
         <td>{{item.amount}}</td>
         <td>EUR {{getPrice(item)}}</td>

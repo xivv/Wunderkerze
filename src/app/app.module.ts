@@ -41,6 +41,8 @@ import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.compo
 import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
 import { AgbComponent } from './user/agb/agb.component';
 import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
+import { ImpressumComponent } from './user/impressum/impressum.component';
+import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/merchandise-view.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { PaymentinformationComponent } from './user/paymentinformation/paymentin
     ResetpasswordComponent,
     OrderAdministrationOverviewComponent,
     AgbComponent,
-    PaymentinformationComponent
+    PaymentinformationComponent,
+    ImpressumComponent,
+    MerchandiseViewComponent
   ],
   imports: [
     BrowserModule,
