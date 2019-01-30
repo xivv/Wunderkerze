@@ -69,7 +69,7 @@ const routes: Routes = [
     path: 'contact/administration/management', component: ContactManagementComponent,
     canActivate: [AuthguardService, RoleguardService]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'products' }
 ];
 
 @NgModule({

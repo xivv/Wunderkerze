@@ -1,0 +1,31 @@
+.fab {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+  }
+  
+  /* Add a hover effect if you want */
+  .fab:hover {
+    opacity: 0.7;
+  }
+
+.footer {
+  background-color: #666666;
+  padding: 1rem 1.5rem 2rem;
+}
+
+.navLink {
+  color: white;
+}
+
+.navLink:hover {
+  opacity: 0.7;
+}
+
+.shoppingButton {
+  color: white;
+  background-color: #437600;
+}

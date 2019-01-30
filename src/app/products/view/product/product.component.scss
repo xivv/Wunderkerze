@@ -2,5 +2,39 @@
     width: 100px;
     height: 50px;
     font-weight: bold;
-
 }
+
+.shoppingButton {
+    color: white;
+    background-color: #437600;
+  }
+  
+  .fa-star {
+      color: orange;
+      font-size: 20px;
+      width: 30px;
+  }
+
+  .productInformation {
+      border: solid 1px  #666666;;
+      box-shadow: none;
+      border-radius: 0px;
+  }
+
+  .productTextHeader{
+    border: solid 1px  #666666;;
+    box-shadow: none;
+    border-radius: 0px;
+    background-color: lightgrey;
+  }
+
+  .fa-check {
+      color: red;
+  }
+  a {
+      color: black;
+  }
+
+  .logo {
+      float: right;
+  }

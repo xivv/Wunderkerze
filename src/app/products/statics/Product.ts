@@ -6,6 +6,7 @@ export interface Product {
     id?: string;
     amount: number;
     description: string;
+    shortDescription: string;
     image: string;
     name: string;
     priceAndSizes: PriceAndSize[];

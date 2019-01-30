@@ -1,15 +1,6 @@
-<section class="hero is-dark">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Royal Highs
-      </h1>
-    </div>
-  </div>
-</section>
-<section class="section">
+<section class="section" style="background-color: rgba(205, 205, 205, 0.2);">
   <div class="container">
-    <div style="text-align:center">
+    <div style="text-align:center;">
       <app-alert></app-alert>
       <app-navbar></app-navbar>
       <app-search></app-search>
@@ -17,21 +8,19 @@
     </div>
   </div>
 </section>
-<footer class="footer">
+<footer class="footer has-text-centered">
+  <div class="content">
+    <a href="https://www.facebook.com/saviiz" class="fab fa-facebook-f"></a>
+    <a href="https://www.instagram.com/royalhighs.de/" class="fab fa-instagram"></a>
+    <h1 class="title is-6 navLink">ROYAL HIGHS</h1>
+  </div>
   <div class="content has-text-centered">
     <p>
-      <strong>Über Royal-High</strong><br>
-      <a routerLink="/impressum"> Impressum</a><br>
-      <a routerLink="/agb">
-        AGB
-      </a><br>
-      <a href="https://google.de"> Hilfe</a><br>
-      <a routerLink="/contact">
-        Kontakt
-      </a><br>
-      <a routerLink="/paymentinformation">
-        Zahlungsinformationen
-      </a>
+      <a class="navLink" routerLink="/contact">Kontakt | </a>
+      <a class="navLink" routerLink="/impressum">Impressum | </a>
+      <a class="navLink" routerLink="/agb">AGB | </a>
+      <a class="navLink" href="https://google.de">FAQ | </a>
+      <a class="navLink" routerLink="/paymentinformation">Zahlungsinformationen</a>
     </p>
   </div>
 </footer>

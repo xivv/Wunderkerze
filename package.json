@@ -29,6 +29,7 @@
     "font-awesome": "^4.7.0",
     "ng-recaptcha": "^4.2.1",
     "ng-simple-slideshow": "^1.2.6",
+    "ng2-pdf-viewer": "^5.2.3",
     "ngx-hm-carousel": "^1.2.9",
     "ngx-order-pipe": "^2.0.2",
     "rxjs": "~6.3.3",

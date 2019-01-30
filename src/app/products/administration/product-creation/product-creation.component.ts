@@ -25,10 +25,12 @@ export class ProductCreationComponent implements OnInit {
       name: ['', [Validators.required]],
       amount: ['', Validators.required],
       description: ['', Validators.required],
+      shortDescription: ['', Validators.required],
       image: ['', Validators.required],
       priceAndSize: this.formBuilder.array([]),
       price: [''],
       size: [''],
+      shipping: [''],
       type: ['Produkt', Validators.required]
     });
   }
@@ -46,7 +48,8 @@ export class ProductCreationComponent implements OnInit {
   addSize() {
     const newPriceAndSize: PriceAndSize = {
       price: this.f.price.value,
-      size: this.f.size.value
+      size: this.f.size.value,
+      shipping: this.f.shipping.value
     };
 
     this.f.priceAndSize.value.push(newPriceAndSize);
@@ -58,6 +61,7 @@ export class ProductCreationComponent implements OnInit {
       name: this.f.name.value,
       amount: this.f.amount.value,
       description: this.f.description.value,
+      shortDescription: this.f.shortDescription.value,
       image: this.f.image.value,
       priceAndSizes: this.f.priceAndSize.value,
       type: this.f.type.value,

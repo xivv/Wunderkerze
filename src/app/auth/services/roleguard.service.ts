@@ -22,7 +22,6 @@ export class RoleguardService implements CanActivate {
   }
 
   isAdmin() {
-    //this.authService.getUserRole() === 'admin'
-    return true;
+    return this.authService.getUserRole() === 'admin';
   }
 }

@@ -16,6 +16,7 @@ export class ShoppingCartComponent implements OnInit {
 
   @Input() sendingCosts: number;
   @Input() additionalCosts: number;
+  maximumItemsInCart = 10;
 
   constructor(
     private addressService: AddressService,
@@ -25,14 +26,22 @@ export class ShoppingCartComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    if (!this.isNotEmpty()) {
+      this.router.navigate(['/products']);
+    }
   }
 
   decreaseProductAmount(cartItem: CartItem) {
     this.shoppingCartService.removeProductFromCart(cartItem.product, cartItem.priceAndSize.size);
+    if (!this.isNotEmpty()) {
+      this.router.navigate(['/products']);
+    }
   }
 
   increaseProductAmount(cartItem: CartItem) {
-    this.shoppingCartService.addProductToCart(cartItem.product, cartItem.priceAndSize);
+    if (cartItem.amount < this.maximumItemsInCart) {
+      this.shoppingCartService.addProductToCart(cartItem.product, cartItem.priceAndSize);
+    }
   }
 
   getPrice(cartItem: CartItem): string {

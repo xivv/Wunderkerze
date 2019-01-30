@@ -30,14 +30,7 @@
         </div>
       </div>
       <br><br>
-      <h1 class="title">
-        Artikel überprüfen
-      </h1>
-      <div class="card">
-        <div class="card-content">
-          <app-shopping-cart [sendingCosts]="350" [additionalCosts]="additionalCosts"></app-shopping-cart>
-        </div>
-      </div>
+      <app-shopping-cart [sendingCosts]="getShippingCosts()" [additionalCosts]="additionalCosts"></app-shopping-cart>
       <br><br>
       <div class="card">
         <div class="card-content">

@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/messages/alert.service';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-payment',
@@ -58,6 +59,19 @@ export class PaymentComponent implements OnInit {
 
   get f() { return this.paymentForm.controls; }
 
+  getShippingCosts() {
+
+    let shippingCost = 0;
+    this.shoppingCartService.cartItems.forEach(element => {
+
+      if (element.priceAndSize.shipping > shippingCost) {
+        shippingCost = element.priceAndSize.shipping;
+      }
+    });
+
+    return shippingCost;
+  }
+
   order() {
 
     if (this.shoppingCartService.isEmpty() || this.paymentForm.invalid) {
@@ -82,6 +96,20 @@ export class PaymentComponent implements OnInit {
     this.ordersService.insertOrder(order);
     this.shoppingCartService.cartItems = [];
     this.router.navigate(['/payed']);
+  }
+
+  hasAddress() {
+    if (this.addressService.userAddresses) {
+      return this.addressService.userAddresses.subscribe(
+        val => {
+          if (val && val.length > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      );
+    }
   }
 
 }

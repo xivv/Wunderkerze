@@ -43,6 +43,7 @@ import { AgbComponent } from './user/agb/agb.component';
 import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
 import { ImpressumComponent } from './user/impressum/impressum.component';
 import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/merchandise-view.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/me
     ReactiveFormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    OrderModule
+    OrderModule,
+    PdfViewerModule
   ],
   providers: [AuthService, AuthguardService],
   bootstrap: [AppComponent]

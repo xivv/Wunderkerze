@@ -1,43 +1,59 @@
-<div class="field is-grouped is-grouped-centered">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://royalhighs.de/">
+      <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/50000488_612223822566687_4486372732589572096_n.jpg?_nc_cat=101&_nc_ht=scontent-frt3-1.xx&oh=6e88b534d744f17cd0a6511c7b6ee587&oe=5CECC7D4"
+        width="28" height="28">
+    </a>
 
-  <p class="control">
-    <a routerLink="/products" class="button is-dark">
-      Produkte
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </a>
-  </p>
-  <p class="control">
-    <a routerLink="/merchandise" class="button is-dark">
-      Merchandise
-    </a>
-  </p>
-  <p class="control">
-    <a routerLink="/shopping-cart" class="button is-dark">
-      Warenkorb - {{shoppingCartService.getNumberOfCartItems()}}
-    </a>
-  </p>
-  <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
-    <a routerLink="/orders" class="button is-dark">
-      Bestellungen
-    </a>
-  </p>
-  <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
-    <a routerLink="/user" class="button is-dark">
-      Mein Konto - {{authService.getUserRole()}}
-    </a>
-  </p>
-  <p *ngIf="(authService.user | async) && roleguardService.isAdmin(); else notLoggedIn" class="control">
-    <a routerLink="/products/administration" class="button is-dark">
-      Administration
-    </a>
-  </p>
-  <p *ngIf="!(authService.user | async); else alreadyLoggedIn" class="control">
-    <a routerLink="/login" class="button is-dark">
-      Login
-    </a>
-  </p>
-  <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
-    <a (click)="logout()" class="button is-dark">
-      Logout
-    </a>
-  </p>
-</div>
+  </div>
+
+  <div class="navbar-end">
+
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+
+        <a routerLink="/products" class="navbar-item">
+          Produkte
+        </a>
+
+        <a routerLink="/merchandise" class="navbar-item">
+          Merchandise
+        </a>
+
+        <a routerLink="/shopping-cart" class="navbar-item">
+          Warenkorb - {{shoppingCartService.getNumberOfCartItems()}}
+        </a>
+
+        <div *ngIf="(authService.user | async); else notLoggedIn" class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Mein Konto
+          </a>
+          <div class="navbar-dropdown">
+            <a routerLink="/orders" class="navbar-item">
+              Bestellungen
+            </a>
+            <a routerLink="/user" class="navbar-item">
+              Nutzerinformationen
+            </a>
+            <hr class="navbar-divider">
+            <a (click)="logout()" class="navbar-item">
+              Logout
+            </a>
+          </div>
+        </div>
+        <a *ngIf="!(authService.user | async); else alreadyLoggedIn" routerLink="/login" class="navbar-item">
+          Login
+        </a>
+        <a *ngIf="(authService.user | async) && roleguardService.isAdmin(); else notLoggedIn" routerLink="/products/administration"
+          class="navbar-item">
+          Administration
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

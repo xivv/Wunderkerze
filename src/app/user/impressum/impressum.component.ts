@@ -9,6 +9,8 @@ export class ImpressumComponent implements OnInit {
 
   constructor() { }
 
+  pdfSrc = 'assets/impressum.pdf';
+
   ngOnInit() {
   }
 

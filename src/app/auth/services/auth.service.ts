@@ -41,13 +41,17 @@ export class AuthService {
           this.role = this.afAuth.authState.pipe(
             switchMap(role => {
               if (role) {
-                return this.afs.doc<Role>(`roles/${user.uid}`).valueChanges();
+                return this.afs.collection<Role>('roles', ref => ref.where('uid', '==', this.getUserId())).valueChanges();
               } else {
                 return of(null);
               }
             })
           );
-          this.role.subscribe(val => this.roleString = val);
+          this.role.subscribe(val => {
+            if (val) {
+              this.roleString = val[0];
+            }
+          });
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
 

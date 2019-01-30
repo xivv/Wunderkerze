@@ -9,6 +9,8 @@ export class AgbComponent implements OnInit {
 
   constructor() { }
 
+  pdfSrc = 'assets/agb.pdf';
+
   ngOnInit() {
   }
 

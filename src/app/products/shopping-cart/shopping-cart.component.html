@@ -1,43 +1,55 @@
 <section class="section">
   <div class="container">
-    <table class="table is-fullwidth is-striped">
-      <tr>
-        <th>Produktname</th>
-        <th>Produkt</th>
-        <th>Größe</th>
-        <th>Menge</th>
-        <th>Preis</th>
-        <th>Aktionen</th>
-      </tr>
-      <tr *ngFor="let item of shoppingCartService.cartItems">
-        <td><a routerLink="/product/{{item.product.id}}">{{item.product.name}}</a></td>
-        <td>
+
+    <h1 class="title is-4">Ihre Auswahl</h1>
+    <div class="shoppingItem" *ngFor="let item of shoppingCartService.cartItems">
+      <br>
+      <div class="columns">
+        <div class="column">
           <figure class="image is-128x128">
             <img src="{{item.product.image}}">
           </figure>
-        </td>
-        <td>
-          {{item.priceAndSize.size}}
-        </td>
-        <td>{{item.amount}}</td>
-        <td>EUR {{getPrice(item)}}</td>
-        <td><a class="button is-danger" (click)="decreaseProductAmount(item)">-</a><a class="button is-success" (click)="increaseProductAmount(item)">+</a></td>
-      </tr>
-      <tfoot>
-        <tr>
-          <td>
-            <p>Warenkorb: EUR {{getTotal()}}</p>
-            <p *ngIf="sendingCosts">Versandkosten: EUR {{convertToString(sendingCosts)}}</p>
-            <p *ngIf="additionalCosts">Nachnahme: EUR {{convertToString(additionalCosts)}}</p>
-            <p *ngIf="sendingCosts"><b>Gesamtbetrag: EUR {{getTotal(true)}}</b></p>
-          </td>
-          <td></td>
-        </tr>
-      </tfoot>
-    </table>
+        </div>
+        <div class="column" style="text-align: left;">
+          <h1 class="title is-4">{{item.product.name}}</h1>
+          <div class="columns">
+            <div class="column">
+              Größe: {{item.priceAndSize.size}}
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              {{item.product.shortDescription}}
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="columns">
+            <div class="column">
+              <h1 class="title is-4">Menge: {{item.amount}}</h1>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <a class="button" (click)="decreaseProductAmount(item)">-</a><a class="button increaseButton" (click)="increaseProductAmount(item)">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title is-4">{{getPrice(item)}}€</h1>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
+    <p>Warenkorb: EUR {{getTotal()}}</p>
+    <p *ngIf="sendingCosts">Versandkosten: EUR {{convertToString(sendingCosts)}}</p>
+    <p *ngIf="additionalCosts">Nachnahme: EUR {{convertToString(additionalCosts)}}</p>
+    <p *ngIf="sendingCosts"><b>Gesamtbetrag: EUR {{getTotal(true)}}</b></p>
+    <br>
     <p [hidden]="isInPayment() || shoppingCartService.isEmpty()" *ngIf="(authService.user | async); else notLoggedIn"
       class="control">
-      <a routerLink="/payment" class="button is-dark">
+      <a routerLink="/payment" class="button shoppingButton">
         Zur Kasse
       </a>
     </p>

@@ -1,31 +1,68 @@
 <section class="section" *ngIf="selectedPriceAndSize">
   <div class="container">
-    <p>{{product.name}}</p>
-    <p>{{product.description}}</p>
-    <p>Vorrat: {{getRemainingAmount(product.amount)}} stk.</p>
-    <p>Preis: EUR {{getPrice()}}</p>
-    <p>Verfügbare Größen:</p>
 
-    <figure class="image is-128x128">
-      <img src="{{product.image}}">
+    <figure class="image">
+      <img src="../../../../assets/product-header.png">
     </figure>
+    <div class="box">
+      <div class="columns">
+        <div class="column">
+          <figure class="image">
+            <img src="{{product.image}}">
+          </figure>
+        </div>
+        <div class="column">
+          <div class="columns">
+            <div class="column">
+              <h1 class="title">{{product.name | uppercase}}</h1>
+              <p [innerHTML]="getRatingStars()"></p>
+            </div>
+            <div class="column">
+              <figure class="image is-128x128 logo">
+                <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/50000488_612223822566687_4486372732589572096_n.jpg?_nc_cat=101&_nc_ht=scontent-frt3-1.xx&oh=6e88b534d744f17cd0a6511c7b6ee587&oe=5CECC7D4">
+              </figure>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <p style="text-align: left;"><i class="fas fa-check"></i> KOSTENFEIER VERSAND AB 50 EUR</p>
+              <p style="text-align: left;"><i class="fas fa-check"></i> TELEFONISCHER SUPPORT</p>
+              <p style="text-align: left;"><i class="fas fa-check"></i> SICHERE ZAHLUNG VIA SSL</p>
+            </div>
+            <div class="column">
+              <p><strong>Artikel-Nr.: </strong>{{product.id}}</p>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <p><strong>Inhalt:</strong></p>
+              <div class=" select">
+                <select [(ngModel)]="selectedPriceAndSize">
+                  <option [ngValue]="priceAndSize" *ngFor="let priceAndSize of product.priceAndSizes">{{priceAndSize.size}}</option>
+                </select>
+              </div>
 
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="select">
-          <select [(ngModel)]="selectedPriceAndSize">
-            <option [ngValue]="priceAndSize" *ngFor="let priceAndSize of product.priceAndSizes">{{priceAndSize.size}}</option>
-          </select>
+            </div>
+            <div class="column">
+              <h1 class="title is-4">{{getPrice()}} €</h1>
+              <p>inkl. MwSt. <a routerLink="/paymentinformation"><u>zzgl. Versandkosten</u></a></p>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <button (click)="addToCart()" [disabled]="product.amount <= 0" class="button is-dark shoppingButton">
+                <p [hidden]="!product.amount > 0"><i class="fas fa-shopping-cart"></i> In den Warenkorb</p>
+                <p [hidden]="!product.amount <= 0">Ausverkauft</p>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <p class="control">
-      <button (click)="addToCart()" [disabled]="product.amount <= 0" class="button is-dark">
-        <p [hidden]="!product.amount > 0">In den Warenkorb</p>
-        <p [hidden]="!product.amount <= 0">Ausverkauft</p>
-      </button>
-    </p>
-    <br>
+    <div class="box productInformation">
+      <p [innerHTML]="product.description"></p>
+    </div>
+
     <div class="box" *ngIf="this.authService.getUserId()">
       <h1 class="title is-4">Bewertungen</h1>
       <form [formGroup]="ratingForm" (ngSubmit)="rate()">

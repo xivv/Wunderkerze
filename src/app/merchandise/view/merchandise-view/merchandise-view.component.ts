@@ -15,8 +15,8 @@ export class MerchandiseViewComponent implements OnInit {
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService) { }
 
-  addToCart(product: Product, priceAndSize: PriceAndSize) {
-    this.shoppingCartService.addProductToCart(product, priceAndSize);
+  addToCart(product: Product) {
+    this.shoppingCartService.addProductToCart(product, product.priceAndSizes[0]);
   }
   ngOnInit() {
   }

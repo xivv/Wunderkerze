@@ -40,6 +40,15 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  getRatingStars(): string {
+
+    let starHTML = '';
+    for (let i = 0; i < 5; i++) {
+      starHTML += '<i class="fas fa-star"></i>';
+    }
+    return starHTML;
+  }
+
   alreadyRated(): boolean {
 
     let alreadyRated = false;

@@ -23,6 +23,15 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
+            <label class="label">Kurzbeschreibung</label>
+          </div>
+          <div class="field-body">
+            <input formControlName="shortDescription" type="text" class="input" placeholder="Dieses Produkt...">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
             <label class="label">Beschreibung</label>
           </div>
           <div class="field-body">
@@ -59,7 +68,7 @@
             <label class="label">Produktpreis</label>
           </div>
           <div class="field-body">
-            <input formControlName="price" type="number" class="input" placeholder="Produktpreis (3999 = 39,99€)">
+            <input formControlName="price" type="number" class="input" placeholder="(3999 = 39,99€)">
           </div>
         </div>
 
@@ -69,6 +78,15 @@
           </div>
           <div class="field-body">
             <input type="string" formControlName="size" class="input" placeholder="100ml oder S/M">
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Versandkosten</label>
+          </div>
+          <div class="field-body">
+            <input type="number" formControlName="shipping" class="input" placeholder="(3999 = 39,99€)">
           </div>
         </div>
 
@@ -84,11 +102,13 @@
           <tr>
             <th>Größe</th>
             <th>Preis</th>
+            <th>Versandkosten</th>
             <th></th>
           </tr>
           <tr *ngFor="let priceAndSize of f.priceAndSize.value;let i = index">
             <td>{{priceAndSize.size}}</td>
             <td>{{convertToString(priceAndSize.price)}}€</td>
+            <td>{{convertToString(priceAndSize.shipping)}}€</td>
             <td><a class="button is-danger" (click)="removeSize(i)">-</a></td>
           </tr>
         </table>
