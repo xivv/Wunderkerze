@@ -44,6 +44,8 @@ import { PaymentinformationComponent } from './user/paymentinformation/paymentin
 import { ImpressumComponent } from './user/impressum/impressum.component';
 import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/merchandise-view.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { FaqComponent } from './user/faq/faq.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     AgbComponent,
     PaymentinformationComponent,
     ImpressumComponent,
-    MerchandiseViewComponent
+    MerchandiseViewComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     RecaptchaModule,
     RecaptchaFormsModule,
     OrderModule,
-    PdfViewerModule
+    PdfViewerModule,
+    SlideshowModule
   ],
   providers: [AuthService, AuthguardService],
   bootstrap: [AppComponent]

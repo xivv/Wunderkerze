@@ -7,15 +7,14 @@
     <div class="box">
       <div class="columns">
         <div class="column">
-          <figure class="image">
-            <img src="{{product.image}}">
-          </figure>
+          <slideshow [backgroundSize]="'cover'" [showDots]="true" [dotColor]="'#437600'" [height]="'500px'" [imageUrls]="product.images"></slideshow>
         </div>
         <div class="column">
           <div class="columns">
             <div class="column">
               <h1 class="title">{{product.name | uppercase}}</h1>
-              <p [innerHTML]="getRatingStars()"></p>
+              <i class="fas fa-star" *ngFor="let star of getRatingAsArray()"></i>
+              <i class="fas fa-star zero" *ngFor="let star of getRatingAsArray(true)"></i>
             </div>
             <div class="column">
               <figure class="image is-128x128 logo">
@@ -35,7 +34,7 @@
           </div>
           <div class="columns">
             <div class="column">
-              <p><strong>Inhalt:</strong></p>
+              <p><strong>Größe:</strong></p>
               <div class=" select">
                 <select [(ngModel)]="selectedPriceAndSize">
                   <option [ngValue]="priceAndSize" *ngFor="let priceAndSize of product.priceAndSizes">{{priceAndSize.size}}</option>
@@ -50,7 +49,7 @@
           </div>
           <div class="columns">
             <div class="column">
-              <button (click)="addToCart()" [disabled]="product.amount <= 0" class="button is-dark shoppingButton">
+              <button (click)="addToCart()" [disabled]="product.amount <= 0" class="button shoppingButton">
                 <p [hidden]="!product.amount > 0"><i class="fas fa-shopping-cart"></i> In den Warenkorb</p>
                 <p [hidden]="!product.amount <= 0">Ausverkauft</p>
               </button>
@@ -64,20 +63,32 @@
     </div>
 
     <div class="box" *ngIf="this.authService.getUserId()">
-      <h1 class="title is-4">Bewertungen</h1>
+      <h1 class="title is-4">Bewerten</h1>
       <form [formGroup]="ratingForm" (ngSubmit)="rate()">
         <div class="control">
           <label class="label">Rating</label>
-          <input class="input" type="number" formControlName="rating" placeholder="Rating">
+          <div class="select">
+            <select class="ratingSelect" formControlName="rating">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
         </div>
         <br>
         <textarea formControlName="description" class="textarea" placeholder=""></textarea>
         <br>
-        <button [disabled]="this.ratingForm.invalid || alreadyRated()" type="submit" class="button is-dark">Bewerten</button>
+        <button [disabled]="this.ratingForm.invalid || alreadyRated()" type="submit" class="button shoppingButton">Bewerten</button>
       </form>
     </div>
     <div class="box">
-      <h1 class="title is-4">Bewertungen der anderen Benutzer {{totalRating()}}/5</h1>
+      <h1 class="title is-4">Bewertungen der anderen Benutzer</h1>
+      <i class="fas fa-star" *ngFor="let star of getRatingAsArray()"></i>
+      <i class="fas fa-star zero" *ngFor="let star of getRatingAsArray(true)"></i>
+      <br>
+      <br>
       <div class="box" *ngFor="let rating of product.ratings">
         <textarea [disabled]="true" class="textarea" placeholder="">{{rating.rating}}/5: {{rating.description}}</textarea>
       </div>

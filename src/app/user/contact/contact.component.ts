@@ -59,6 +59,7 @@ export class ContactComponent implements OnInit {
   }
 
   contact() {
+
     if (this.contactForm.invalid) {
       this.alertService.error('Das Formular wurde nicht korrekt ausgefüllt');
       return;
@@ -71,7 +72,7 @@ export class ContactComponent implements OnInit {
       relatedElement: this.f.relatedElement.value,
       description: this.f.description.value,
       date: new Date(),
-      telefonNumber: '0176666666',
+      telefonNumber: this.f.telefonNumber.value,
       reason: this.f.reason.value
     };
 

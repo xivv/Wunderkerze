@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
 
   selectedPriceAndSize: PriceAndSize;
   product: Product;
+  rating: number;
 
   ratingForm: FormGroup;
 
@@ -38,15 +39,6 @@ export class ProductComponent implements OnInit {
         this.product.id = id;
       }
     });
-  }
-
-  getRatingStars(): string {
-
-    let starHTML = '';
-    for (let i = 0; i < 5; i++) {
-      starHTML += '<i class="fas fa-star"></i>';
-    }
-    return starHTML;
   }
 
   alreadyRated(): boolean {
@@ -81,8 +73,18 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  totalRating() {
+  getRatingAsArray(negative: boolean): number[] {
 
+    let ratingArray = [];
+    if (negative) {
+      ratingArray = Array(5 - this.totalRating()).fill(0);
+    } else {
+      ratingArray = Array(this.totalRating()).fill(0);
+    }
+    return ratingArray;
+  }
+
+  totalRating() {
     let totalRating = 0;
     this.product.ratings.forEach(function (ratingElement) {
       totalRating += ratingElement.rating;
@@ -90,21 +92,13 @@ export class ProductComponent implements OnInit {
 
     let rating = totalRating / this.product.ratings.length;
     if (isNaN(rating)) {
-      rating = 0;
+      rating = 5;
     }
-    return rating;
+    return Math.round(rating);
   }
 
   getPrice(): string {
     return ProductConverter.convertToPriceEUR(this.selectedPriceAndSize);
-  }
-
-  getRemainingAmount(amount: number) {
-    if (amount > 10) {
-      return 10;
-    } else {
-      return amount;
-    }
   }
 
   addToCart() {

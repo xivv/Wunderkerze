@@ -1,0 +1,40 @@
+<section class="section">
+  <div class="container">
+
+    <div *ngFor="let order of ordersService.filteredOrders | async">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">Bestellung aufgegeben <br> {{order.paymentOption}} <br>{{ order.date.seconds *
+            1000 | date:'dd.MM.yyyy'
+            }}</p>
+          <p class="card-header-title">Lieferadresse
+            <br> {{getFormatedAddress(order.address)}}</p>
+          <span class="card-header-icon" aria-label="more options">
+            <div class="select">
+              <select [(ngModel)]="order.orderStatus">
+                <option *ngFor="let status of statuses">{{status}}</option>
+              </select>
+            </div>
+            <button (click)="updateOrder(order)" class="button is-dark">
+              Update
+            </button>
+          </span>
+        </header>
+        <div *ngFor="let cartItem of order.cartItems" class="card-content">
+          <figure class="image is-128x128">
+            <img src="{{cartItem.product.images[0]}}">
+            <span class="tag is-dark">{{cartItem.amount}}</span>
+            <a routerLink="/product/{{cartItem.product.id}}"> {{cartItem.product.name}}</a>
+          </figure>
+          EUR
+          {{getCartItemPrice(cartItem)}}
+        </div>
+        <footer class="card-footer">
+          <a class="card-footer-item">Bestellnummer: [{{order.id}}]</a>
+          <a class="card-footer-item">SUMME <br> EUR {{getTotal(order)}}</a>
+        </footer>
+      </div>
+      <br>
+    </div>
+  </div>
+</section>

@@ -25,6 +25,7 @@ import { AgbComponent } from './user/agb/agb.component';
 import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
 import { ImpressumComponent } from './user/impressum/impressum.component';
 import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/merchandise-view.component';
+import { FaqComponent } from './user/faq/faq.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
     path: 'product/administration/management', component: ProductManagementComponent,
     canActivate: [AuthguardService, RoleguardService]
   },
+  { path: 'faq', component: FaqComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },

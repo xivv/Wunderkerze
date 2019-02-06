@@ -1,0 +1,66 @@
+<section class="section">
+  <div class="container">
+
+
+    <div *ngIf="!(addressService.userAddresses | async)?.length">
+      <h1 class="title is-4">Bitte legen sie eine Addresse an</h1>
+      <app-address></app-address>
+    </div>
+    <form [formGroup]="paymentForm">
+
+      <app-shopping-cart [sendingCosts]="getShippingCosts()" [additionalCosts]="additionalCosts"></app-shopping-cart>
+
+      <div class="columns">
+        <div class="column">
+          <div class="columns">
+            <div class="column">
+              <h1 class="title">Versandadresse</h1>
+              <div class="select">
+                <select formControlName="selectedAddress">
+                  <option [ngValue]="address" *ngFor="let address of addressService.userAddresses | async">
+                    {{address.street}}
+                    {{address.streetNumber}},
+                    {{address.city}} {{address.postCode}},
+                    {{address.country}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="column">
+              <h1 class="title">Zahlungsart</h1>
+              <div class="select">
+                <select formControlName="paymentOption">
+                  <option *ngFor="let payment of paymentOptions">
+                    {{payment}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="column">
+              <div class="columns">
+                <div class="column">
+                  <re-captcha formControlName="recaptcha" siteKey="6Lel730UAAAAAHFoG1zZrpuGzdzptZpX1KGEVr0k"></re-captcha>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column">
+                  <label class="checkbox">
+                    <input type="checkbox" formControlName="agb">
+                    Ich erkläre mich mit den <a target="_blank" routerLink="/agb">AGB</a> von Royal High einverstanden.
+                  </label>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column">
+                  <button [disabled]="this.paymentForm.invalid || this.shoppingCartService.isEmpty()" class="button shoppingButton"
+                    (click)="order()">Jetzt kaufen
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

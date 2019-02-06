@@ -1,0 +1,59 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title is-4">Ihre Auswahl</h1>
+    <div class="shoppingItem" *ngFor="let item of shoppingCartService.cartItems">
+      <br>
+      <div class="columns">
+        <div class="column">
+          <figure class="image is-128x128">
+            <img src="{{item.product.images[0]}}">
+          </figure>
+        </div>
+        <div class="column" style="text-align: left;">
+          <h1 class="title is-4">{{item.product.name}}</h1>
+          <div class="columns">
+            <div class="column">
+              Größe: {{item.priceAndSize.size}}
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              {{item.product.shortDescription}}
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="columns">
+            <div class="column">
+              <h1 class="title is-4">Menge: {{item.amount}}</h1>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <a class="button" (click)="decreaseProductAmount(item)">-</a><a class="button increaseButton" (click)="increaseProductAmount(item)">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title is-4">{{getPrice(item)}}€</h1>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
+    <p>Warenkorb: EUR {{getTotal()}}</p>
+    <p *ngIf="sendingCosts">Versandkosten: EUR {{convertToString(sendingCosts)}}</p>
+    <p *ngIf="additionalCosts">Nachnahme: EUR {{convertToString(additionalCosts)}}</p>
+    <p *ngIf="!isNan()"><b>Gesamtbetrag: EUR {{getTotal(true)}}</b></p>
+    <br>
+    <div class="columns">
+      <div class="column">
+        <p [hidden]="isInPayment() || shoppingCartService.isEmpty()" *ngIf="(authService.user | async); else notLoggedIn">
+          <a routerLink="/payment" class="button shoppingButton">
+            Zur Kasse
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

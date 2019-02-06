@@ -15,6 +15,10 @@
       width: 30px;
   }
 
+  .zero {
+    color: #666666;
+}
+
   .productInformation {
       border: solid 1px  #666666;;
       box-shadow: none;
@@ -37,4 +41,8 @@
 
   .logo {
       float: right;
+  }
+
+  .ratingSelect {
+        font-family: 'FontAwesome', 'sans-serif';
   }
