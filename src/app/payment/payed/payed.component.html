@@ -5,7 +5,7 @@
       Den Status Ihrer Bestellung können sie jederzeit unter 'Meine Bestellungen' einsehen.
     </h1>
     <div class="field is-grouped is-grouped-centered">
-      <p *ngIf="(authService.user | async); else notLoggedIn" class="control">
+      <p *ngIf="(authService.user | async);" class="control">
         <a routerLink="/orders" class="button is-dark">
           Meine Bestellungen
         </a>

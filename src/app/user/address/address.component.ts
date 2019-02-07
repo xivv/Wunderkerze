@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AddressService } from 'src/app/products/statics/services/address.service';
-import { Address } from 'src/app/products/statics/Address';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { AlertService } from 'src/app/messages/alert.service';
+import { AlertService } from 'src/app/alert/alert.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AddressService } from './services/address.service';
+import { Address } from 'src/app/model/Address';
 
 @Component({
   selector: 'app-address',
@@ -17,7 +17,7 @@ export class AddressComponent implements OnInit {
     private alertService: AlertService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private addressService: AddressService,
+    public addressService: AddressService,
     private route: ActivatedRoute) { }
 
   address: Address = {

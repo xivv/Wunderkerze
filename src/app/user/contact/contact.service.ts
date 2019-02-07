@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Contact } from 'src/app/products/statics/Contact';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Contact } from 'src/app/model/Contact';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class ContactService {
   userContacts: Observable<Contact[]>;
 
   constructor(private db: AngularFirestore,
-    private authService: AuthService) {
+    public authService: AuthService) {
     this.getAllContacts();
 
     this.authService.user.subscribe(

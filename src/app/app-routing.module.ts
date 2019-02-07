@@ -1,31 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductViewComponent } from './products/view/product-view/product-view.component';
-import { AdministrationComponent } from './products/administration/administration.component';
-import { ProductCreationComponent } from './products/administration/product-creation/product-creation.component';
-import { ProductManagementComponent } from './products/administration/product-management/product-management.component';
 import { ProductComponent } from './products/view/product/product.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ShoppingCartComponent } from './products/shopping-cart/shopping-cart.component';
-import { OrderComponent } from './products/order/order.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AddressComponent } from './user/address/address.component';
 import { AuthguardService } from './auth/services/authguard.service';
 import { RoleguardService } from './auth/services/roleguard.service';
 import { RegisterComponent } from './auth/register/register.component';
-import { PaymentComponent } from './products/payment/payment.component';
-import { OrderAdministrationComponent } from './products/order/order-administration/order-administration.component';
-import { PayedComponent } from './products/payment/payed/payed.component';
 import { ContactComponent } from './user/contact/contact.component';
-import { ContactManagementComponent } from './products/administration/contact-management/contact-management.component';
 import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
 import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
-import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
 import { AgbComponent } from './user/agb/agb.component';
 import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
 import { ImpressumComponent } from './user/impressum/impressum.component';
 import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/merchandise-view.component';
 import { FaqComponent } from './user/faq/faq.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { ProductCreationComponent } from './administration/product-creation/product-creation.component';
+import { ProductManagementComponent } from './administration/product-management/product-management.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PaymentComponent } from './payment/payment.component';
+import { OrderComponent } from './order/order.component';
+import { OrderAdministrationComponent } from './administration/order-administration/order-administration.component';
+import { PayedComponent } from './payment/payed/payed.component';
+import { ContactManagementComponent } from './administration/contact-management/contact-management.component';
+import { OrderAdministrationOverviewComponent } from './administration/order-administration-overview/order-administration-overview.component';
 
 
 const routes: Routes = [

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Order } from '../../statics/Order';
+import { Order } from '../../model/Order';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';

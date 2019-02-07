@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '../services/orders.service';
-import { ProductConverter } from '../../statics/ProductConverter';
-import { CartItem } from '../../statics/CartItem';
-import { Order } from '../../statics/Order';
-import { Address } from '../../statics/Address';
+import { ProductConverter } from '../../model/ProductConverter';
+import { CartItem } from '../../model/CartItem';
+import { Order } from '../../model/Order';
+import { Address } from '../../model/Address';
 import { ActivatedRoute } from '@angular/router';
+import { OrdersService } from 'src/app/order/services/orders.service';
 
 @Component({
   selector: 'app-order-administration',
@@ -17,7 +17,7 @@ export class OrderAdministrationComponent implements OnInit {
   filter: string;
 
   constructor(
-    private ordersService: OrdersService,
+    public ordersService: OrdersService,
     private route: ActivatedRoute) {
   }
 

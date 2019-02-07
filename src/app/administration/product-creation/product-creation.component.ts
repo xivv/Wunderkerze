@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../statics/Product';
-import { AlertService } from 'src/app/messages/alert.service';
+import { Product } from '../../model/Product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PriceAndSize } from '../../statics/PriceAndSize';
-import { ProductConverter } from '../../statics/ProductConverter';
+import { PriceAndSize } from '../../model/PriceAndSize';
+import { ProductConverter } from '../../model/ProductConverter';
+import { AlertService } from 'src/app/alert/alert.service';
+import { ProductService } from 'src/app/products/services/product.service';
 
 @Component({
   selector: 'app-product-creation',

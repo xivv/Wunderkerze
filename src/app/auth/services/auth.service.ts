@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AlertService } from 'src/app/messages/alert.service';
+import { AlertService } from 'src/app/alert/alert.service';
 
 interface User {
   uid: string;

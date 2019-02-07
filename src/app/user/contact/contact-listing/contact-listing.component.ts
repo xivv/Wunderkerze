@@ -8,7 +8,7 @@ import { ContactService } from '../contact.service';
 })
 export class ContactListingComponent implements OnInit {
 
-  constructor(private contactService: ContactService) { }
+  constructor(public contactService: ContactService) { }
 
   ngOnInit() {
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/services/auth.service';
 import { RoleguardService } from '../auth/services/roleguard.service';
-import { ShoppingCartService } from '../products/shopping-cart/services/shopping-cart.service';
+import { ShoppingCartService } from '../shopping-cart/services/shopping-cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +11,9 @@ import { ShoppingCartService } from '../products/shopping-cart/services/shopping
 export class NavbarComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
-    private roleguardService: RoleguardService,
-    private shoppingCartService: ShoppingCartService) { }
-
-  logout() {
-    return this.authService.signOut();
+    public authService: AuthService,
+    public roleguardService: RoleguardService,
+    public shoppingCartService: ShoppingCartService) {
   }
 
   ngOnInit() {

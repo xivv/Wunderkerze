@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingCartService } from './services/shopping-cart.service';
-import { CartItem } from '../statics/CartItem';
-import { ProductConverter } from '../statics/ProductConverter';
+import { CartItem } from '../model/CartItem';
+import { ProductConverter } from '../model/ProductConverter';
 import { OrdersService } from '../order/services/orders.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { AddressService } from '../statics/services/address.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AddressService } from '../user/address/services/address.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,10 +18,10 @@ export class ShoppingCartComponent implements OnInit {
   @Input() additionalCosts: number;
 
   constructor(
-    private addressService: AddressService,
-    private shoppingCartService: ShoppingCartService,
-    private ordersService: OrdersService,
-    private authService: AuthService,
+    public addressService: AddressService,
+    public shoppingCartService: ShoppingCartService,
+    public ordersService: OrdersService,
+    public authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {

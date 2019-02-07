@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AddressService } from '../statics/services/address.service';
 import { ShoppingCartService } from '../shopping-cart/services/shopping-cart.service';
 import { OrdersService } from '../order/services/orders.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Order } from '../statics/Order';
+import { Order } from '../model/Order';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertService } from 'src/app/messages/alert.service';
+import { AlertService } from 'src/app/alert/alert.service';
 import { Router } from '@angular/router';
-import { ProductService } from '../services/product.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { AddressService } from '../user/address/services/address.service';
+import { ProductService } from '../products/services/product.service';
 
 @Component({
   selector: 'app-payment',
@@ -19,11 +18,11 @@ export class PaymentComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private addressService: AddressService,
-    private alertService: AlertService,
-    private shoppingCartService: ShoppingCartService,
-    private ordersService: OrdersService,
-    private authService: AuthService,
+    public addressService: AddressService,
+    public alertService: AlertService,
+    public shoppingCartService: ShoppingCartService,
+    public ordersService: OrdersService,
+    public authService: AuthService,
     private formBuilder: FormBuilder,
     private productService: ProductService
   ) { }

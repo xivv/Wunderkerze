@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
-import { ProductConverter } from '../../statics/ProductConverter';
-import { ShoppingCartService } from '../../shopping-cart/services/shopping-cart.service';
-import { PriceAndSize } from '../../statics/PriceAndSize';
-import { Product } from '../../statics/Product';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertService } from 'src/app/messages/alert.service';
-import { Rating } from '../../statics/Rating';
+import { AlertService } from 'src/app/alert/alert.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { PriceAndSize } from 'src/app/model/PriceAndSize';
+import { Product } from 'src/app/model/Product';
+import { ShoppingCartService } from 'src/app/shopping-cart/services/shopping-cart.service';
+import { Rating } from 'src/app/model/Rating';
+import { ProductConverter } from 'src/app/model/ProductConverter';
 
 @Component({
   selector: 'app-product',

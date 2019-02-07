@@ -16,29 +16,17 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
-import { AdministrationComponent } from './products/administration/administration.component';
-import { ProductCreationComponent } from './products/administration/product-creation/product-creation.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProductManagementComponent } from './products/administration/product-management/product-management.component';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { ProductComponent } from './products/view/product/product.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ShoppingCartComponent } from './products/shopping-cart/shopping-cart.component';
-import { OrderComponent } from './products/order/order.component';
 import { AddressComponent } from './user/address/address.component';
 import { ProfileComponent } from './user/profile/profile.component';
-import { AlertComponent } from './messages/alert/alert.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { PaymentComponent } from './products/payment/payment.component';
-import { OrderAdministrationComponent } from './products/order/order-administration/order-administration.component';
-import { SearchComponent } from './products/search/search.component';
-import { PayedComponent } from './products/payment/payed/payed.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { ContactComponent } from './user/contact/contact.component';
-import { ContactManagementComponent } from './products/administration/contact-management/contact-management.component';
 import { ContactListingComponent } from './user/contact/contact-listing/contact-listing.component';
 import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
-import { OrderAdministrationOverviewComponent } from './products/order/order-administration-overview/order-administration-overview.component';
 import { AgbComponent } from './user/agb/agb.component';
 import { PaymentinformationComponent } from './user/paymentinformation/paymentinformation.component';
 import { ImpressumComponent } from './user/impressum/impressum.component';
@@ -46,6 +34,17 @@ import { MerchandiseViewComponent } from './merchandise/view/merchandise-view/me
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FaqComponent } from './user/faq/faq.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { AdministrationComponent } from './administration/administration.component';
+import { ProductCreationComponent } from './administration/product-creation/product-creation.component';
+import { ProductManagementComponent } from './administration/product-management/product-management.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OrderComponent } from './order/order.component';
+import { AlertComponent } from './alert/alert/alert.component';
+import { OrderAdministrationComponent } from './administration/order-administration/order-administration.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PayedComponent } from './payment/payed/payed.component';
+import { ContactManagementComponent } from './administration/contact-management/contact-management.component';
+import { OrderAdministrationOverviewComponent } from './administration/order-administration-overview/order-administration-overview.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +64,6 @@ import { SlideshowModule } from 'ng-simple-slideshow';
     RegisterComponent,
     PaymentComponent,
     OrderAdministrationComponent,
-    SearchComponent,
     PayedComponent,
     ContactComponent,
     ContactManagementComponent,

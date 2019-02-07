@@ -1,7 +1,8 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://royalhighs.de/">
-      <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/50000488_612223822566687_4486372732589572096_n.jpg?_nc_cat=101&_nc_ht=scontent-frt3-1.xx&oh=6e88b534d744f17cd0a6511c7b6ee587&oe=5CECC7D4"
+      <img
+        src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/50000488_612223822566687_4486372732589572096_n.jpg?_nc_cat=101&_nc_ht=scontent-frt3-1.xx&oh=6e88b534d744f17cd0a6511c7b6ee587&oe=5CECC7D4"
         width="28" height="28">
     </a>
 
@@ -29,7 +30,7 @@
           Warenkorb - {{shoppingCartService.getNumberOfCartItems()}}
         </a>
 
-        <div *ngIf="(authService.user | async); else notLoggedIn" class="navbar-item has-dropdown is-hoverable">
+        <div *ngIf="(authService.user | async);" class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             Mein Konto
           </a>
@@ -41,15 +42,15 @@
               Nutzerinformationen
             </a>
             <hr class="navbar-divider">
-            <a (click)="logout()" class="navbar-item">
+            <a (click)="authService.signOut()" class="navbar-item">
               Logout
             </a>
           </div>
         </div>
-        <a *ngIf="!(authService.user | async); else alreadyLoggedIn" routerLink="/login" class="navbar-item">
+        <a *ngIf="!(authService.user | async);" routerLink="/login" class="navbar-item">
           Login
         </a>
-        <a *ngIf="(authService.user | async) && roleguardService.isAdmin(); else notLoggedIn" routerLink="/products/administration"
+        <a *ngIf="(authService.user | async) && roleguardService.isAdmin();" routerLink="/products/administration"
           class="navbar-item">
           Administration
         </a>

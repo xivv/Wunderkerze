@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertService } from 'src/app/messages/alert.service';
+import { AlertService } from 'src/app/alert/alert.service';
 import { ContactService } from './contact.service';
-import { Contact } from 'src/app/products/statics/Contact';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProductService } from 'src/app/products/services/product.service';
-import { OrdersService } from 'src/app/products/order/services/orders.service';
 import { Router } from '@angular/router';
+import { OrdersService } from 'src/app/order/services/orders.service';
+import { Contact } from 'src/app/model/Contact';
 
 @Component({
   selector: 'app-contact',
@@ -16,12 +16,12 @@ import { Router } from '@angular/router';
 export class ContactComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private formBuilder: FormBuilder,
     private alertService: AlertService,
-    private contactService: ContactService,
-    private productService: ProductService,
-    private orderService: OrdersService,
+    public contactService: ContactService,
+    public productService: ProductService,
+    public orderService: OrdersService,
     private router: Router
   ) { }
 

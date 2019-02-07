@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../statics/Product';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AlertService } from 'src/app/messages/alert.service';
+import { AlertService } from 'src/app/alert/alert.service';
+import { Product } from 'src/app/model/Product';
 
 @Injectable({
   providedIn: 'root'

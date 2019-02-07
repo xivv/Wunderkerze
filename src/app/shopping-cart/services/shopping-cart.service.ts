@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CartItem } from '../../statics/CartItem';
-import { Product } from '../../statics/Product';
-import { AlertService } from 'src/app/messages/alert.service';
-import { PriceAndSize } from '../../statics/PriceAndSize';
+import { CartItem } from '../../model/CartItem';
+import { Product } from '../../model/Product';
+import { AlertService } from 'src/app/alert/alert.service';
+import { PriceAndSize } from '../../model/PriceAndSize';
 
 @Injectable({
   providedIn: 'root'

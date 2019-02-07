@@ -9,7 +9,7 @@ import { ContactService } from 'src/app/user/contact/contact.service';
 export class ContactManagementComponent implements OnInit {
 
   constructor(
-    private contactService: ContactService
+    public contactService: ContactService
   ) { }
 
   ngOnInit() {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './services/orders.service';
-import { Order } from '../statics/Order';
-import { ProductConverter } from '../statics/ProductConverter';
-import { CartItem } from '../statics/CartItem';
-import { Address } from '../statics/Address';
+import { Order } from '../model/Order';
+import { ProductConverter } from '../model/ProductConverter';
+import { CartItem } from '../model/CartItem';
+import { Address } from '../model/Address';
 
 @Component({
   selector: 'app-order',
@@ -13,7 +13,7 @@ import { Address } from '../statics/Address';
 export class OrderComponent implements OnInit {
 
   constructor(
-    private ordersService: OrdersService) {
+    public ordersService: OrdersService) {
   }
 
   ngOnInit() {
